@@ -345,9 +345,9 @@
 
         const instance = createSwiper(root, {
             speed: isReducedMotion() ? 0 : 650,
-            slidesPerView: 1.18,
+            slidesPerView: 2,
             slidesPerGroup: 1,
-            spaceBetween: 16,
+            spaceBetween: 10,
             grabCursor: !isReducedMotion(),
             simulateTouch: true,
             threshold: 6,
@@ -374,14 +374,14 @@
             breakpoints: {
                 575: {
                     slidesPerView: 2,
-                    spaceBetween: 18
+                    spaceBetween: 14
                 },
                 768: {
-                    slidesPerView: 2.7,
-                    spaceBetween: 22
+                    slidesPerView: 2.5,
+                    spaceBetween: 20
                 },
                 1100: {
-                    slidesPerView: 3.4,
+                    slidesPerView: 3,
                     spaceBetween: 28
                 }
             }

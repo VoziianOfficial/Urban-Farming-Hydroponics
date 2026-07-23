@@ -2285,6 +2285,25 @@ textarea.site-form-control {
         --page-gutter: clamp(1.25rem, 2.5vw, 2rem);
     }
 
+    h1,
+    h2,
+    .site-display,
+    .site-heading {
+        max-width: min(100%, 18ch);
+        margin-inline: auto;
+        text-align: center !important;
+        text-wrap: balance;
+    }
+
+    .site-section__head,
+    .site-page-hero__content,
+    .home-feature-faq__summary-head,
+    .category-service-faq__summary-head {
+        display: grid;
+        justify-items: center;
+        text-align: center;
+    }
+
     .site-header__inner {
         grid-template-columns: minmax(18rem, 31%) minmax(0, 69%);
     }

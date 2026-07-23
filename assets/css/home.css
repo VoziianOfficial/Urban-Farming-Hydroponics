@@ -2607,7 +2607,7 @@
 .home-category-circles {
     position: relative;
     padding: clamp(4.5rem, 8vw, 7.5rem) 0;
-    overflow: hidden;
+    overflow: clip;
     background:
         radial-gradient(circle at 50% 115%,
             rgba(183, 243, 74, 0.14),
@@ -2687,6 +2687,8 @@
 .home-category-circles__swiper {
     position: relative;
     z-index: 2;
+    margin: -1.4rem -0.8rem -2rem;
+    padding: 1.4rem 0.8rem 2rem;
     overflow-x: auto;
     overflow-y: hidden;
     overscroll-behavior-inline: contain;
@@ -2730,7 +2732,7 @@
 }
 
 .home-category-circles__swiper:not(.swiper-initialized) .home-category-circles__item {
-    flex-basis: clamp(10.5rem, 21vw, 16rem);
+    flex-basis: calc((100% - clamp(0.75rem, 2vw, 1.75rem)) / 2);
 }
 
 .home-category-circles__visual {
@@ -2988,13 +2990,13 @@
 
 @media (max-width: 1199px) {
     .home-category-circles__visual {
-        --circle-size: clamp(9.5rem, 17vw, 12rem);
+        --circle-size: clamp(9rem, 17vw, 12rem);
     }
 }
 
 @media (max-width: 991px) {
     .home-category-circles {
-        padding: 4.5rem 0;
+        padding: 3.75rem 0;
     }
 
     .home-category-circles::before {
@@ -3002,25 +3004,45 @@
     }
 
     .home-category-circles__visual {
-        --circle-size: 10.5rem;
+        --circle-size: clamp(8rem, 31vw, 10rem);
     }
 }
 
 @media (max-width: 575px) {
     .home-category-circles {
-        padding: 3.75rem 0;
+        padding: 3rem 0;
+    }
+
+    .home-category-circles__swiper {
+        margin-inline: -0.45rem;
+        padding-inline: 0.45rem;
     }
 
     .home-category-circles__visual {
-        --circle-size: 9.7rem;
+        --circle-size: clamp(7.2rem, 35vw, 8.6rem);
+    }
+
+    .home-category-circles__icon svg {
+        width: clamp(2.55rem, 11vw, 3.25rem);
+        height: clamp(2.55rem, 11vw, 3.25rem);
+    }
+
+    .home-category-circles__arrow {
+        width: clamp(2.65rem, 11vw, 3.15rem);
+        height: clamp(2.65rem, 11vw, 3.15rem);
+    }
+
+    .home-category-circles__content {
+        gap: 0.25rem;
+        margin-top: 0.8rem;
     }
 
     .home-category-circles__content strong {
-        font-size: 1rem;
+        font-size: 0.92rem;
     }
 
     .home-category-circles__content small {
-        font-size: 0.7rem;
+        font-size: 0.64rem;
     }
 }
 
