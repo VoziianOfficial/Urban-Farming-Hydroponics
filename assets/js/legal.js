@@ -78,17 +78,6 @@
         }
     }
 
-    function refreshScrollAnimations() {
-        const growwise = getGrowwise();
-
-        if (
-            growwise &&
-            typeof growwise.refreshScrollAnimations === "function"
-        ) {
-            growwise.refreshScrollAnimations();
-        }
-    }
-
     function getHeaderHeight() {
         const header =
             query(".site-header", query("[data-site-header]")) ||
@@ -469,7 +458,6 @@
         renderIcons();
 
         window.requestAnimationFrame(function () {
-            refreshScrollAnimations();
             initHashPosition();
         });
 
@@ -477,7 +465,6 @@
             "load",
             function () {
                 setHeaderHeightVariable();
-                refreshScrollAnimations();
             },
             {
                 once: true

@@ -37,17 +37,6 @@
         ).matches;
     }
 
-    function refreshScrollAnimations() {
-        const growwise = getGrowwise();
-
-        if (
-            growwise &&
-            typeof growwise.refreshScrollAnimations === "function"
-        ) {
-            growwise.refreshScrollAnimations();
-        }
-    }
-
     function renderIcons() {
         const growwise = getGrowwise();
 
@@ -412,7 +401,6 @@
                 contextParallax.refresh();
             }
 
-            refreshScrollAnimations();
         });
 
         window.addEventListener(
@@ -424,7 +412,6 @@
                     contextParallax.refresh();
                 }
 
-                refreshScrollAnimations();
             },
             {
                 once: true
@@ -780,14 +767,6 @@
         initEditorialCardMovement();
         renderIcons();
 
-        const growwise = getGrowwise();
-
-        if (
-            growwise &&
-            typeof growwise.refreshScrollAnimations === "function"
-        ) {
-            growwise.refreshScrollAnimations();
-        }
     }
 
     function startEditorialNotes() {

@@ -65,17 +65,6 @@
         }
     }
 
-    function refreshScrollAnimations() {
-        const growwise = getGrowwise();
-
-        if (
-            growwise &&
-            typeof growwise.refreshScrollAnimations === "function"
-        ) {
-            growwise.refreshScrollAnimations();
-        }
-    }
-
     function createSwiper(root, options) {
         const growwise = getGrowwise();
 
@@ -1107,7 +1096,6 @@
             topicNavigatorController.refresh();
         }
 
-        refreshScrollAnimations();
     }
 
     function initGuidesPage() {
@@ -1328,14 +1316,6 @@
         initOvalCategorySwiper();
         renderIcons();
 
-        const growwise = getGrowwise();
-
-        if (
-            growwise &&
-            typeof growwise.refreshScrollAnimations === "function"
-        ) {
-            growwise.refreshScrollAnimations();
-        }
     }
     function start() {
         const growwise = getGrowwise();

@@ -2190,11 +2190,7 @@ textarea.site-form-control {
     color: var(--color-muted);
 }
 
-.no-js [data-aos] {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-}
+
 
 .no-js .site-media-reveal::after {
     display: none;
@@ -2205,38 +2201,19 @@ textarea.site-form-control {
     display: none !important;
 }
 
-.js [data-aos] {
-    transition-timing-function: cubic-bezier(0.2, 0.75, 0.25, 1) !important;
-    backface-visibility: hidden;
+.no-js [data-aos],
+html.aos-unavailable [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
 }
 
-.js [data-aos="fade-up"] {
-    transform: translate3d(0, 1.35rem, 0);
-}
-
-.js [data-aos="fade-left"] {
-    transform: translate3d(1.35rem, 0, 0);
-}
-
-.js [data-aos="fade-right"] {
-    transform: translate3d(-1.35rem, 0, 0);
-}
-
-.js [data-aos="fade-up"].aos-animate,
-.js [data-aos="fade-left"].aos-animate,
-.js [data-aos="fade-right"].aos-animate {
-    transform: translate3d(0, 0, 0);
-}
-
-@media (max-width: 47.99rem) {
-    .js [data-aos] {
-        transition-duration: 520ms !important;
-    }
-
-    .js [data-aos="fade-up"],
-    .js [data-aos="fade-left"],
-    .js [data-aos="fade-right"] {
-        transform: translate3d(0, 0.9rem, 0);
+@media (prefers-reduced-motion: reduce) {
+    [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
     }
 }
 
@@ -2655,12 +2632,6 @@ textarea.site-form-control {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-    }
-
-    [data-aos] {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
     }
 
     .site-media-reveal::after {

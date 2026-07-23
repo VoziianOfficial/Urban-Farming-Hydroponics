@@ -6,8 +6,7 @@
 
     const config = window.GROWWISE_CONFIG;
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let scrollAnimationsInitialized = false;
-    let scrollAnimationRefreshTimer = 0;
+
     let readyResolver;
 
     const ready = new Promise(function (resolve) {
@@ -903,14 +902,7 @@
         )}</span>
                 </div>
               </div>
-              <div class="site-footer__social">
-                <h2 class="site-footer__social-title">${escapeHtml(
-            socialTitle
-        )}</h2>
-                <ul class="site-footer__social-list" role="list">
-                  ${renderSocialLinks()}
-                </ul>
-              </div>
+            
             </div>
             <div class="site-footer__columns">
               ${renderFooterColumns()}
@@ -1457,126 +1449,34 @@
         });
     }
 
-    function revealScrollAnimationContent(root) {
-        const scope = root || document;
-
-        scope.querySelectorAll("[data-aos]").forEach(function (element) {
-            element.classList.add("aos-animate");
-            element.style.opacity = "1";
-            element.style.transform = "none";
-        });
-    }
-
-    function normalizeScrollAnimationName(name) {
-        const animation = String(name || "").trim();
-
-        if (!animation) {
-            return "fade-up";
-        }
-
-        return animation;
-    }
-
-    function getScrollAnimationOptions() {
-        const isCompactViewport = window.innerWidth < 768;
-
-        return {
-            once: true,
-            mirror: false,
-            offset: isCompactViewport ? 42 : 86,
-            duration: isCompactViewport ? 520 : 760,
-            easing: "ease-out-cubic",
-            anchorPlacement: "top-bottom",
-            debounceDelay: 80,
-            throttleDelay: 90,
-            disable: function () {
-                return reducedMotionQuery.matches;
-            }
-        };
-    }
-
-    function prepareScrollAnimations(root) {
-        const scope = root || document;
-        const isCompactViewport = window.innerWidth < 768;
-
-        scope.querySelectorAll("[data-aos]").forEach(function (element) {
-            element.setAttribute(
-                "data-aos",
-                normalizeScrollAnimationName(
-                    element.getAttribute("data-aos")
-                )
-            );
-
-            if (!element.dataset.scrollAnimationDelay) {
-                element.dataset.scrollAnimationDelay =
-                    element.getAttribute("data-aos-delay") || "0";
-            }
-
-            const baseDelay = Number.parseInt(
-                element.dataset.scrollAnimationDelay,
-                10
-            );
-            const safeDelay = Number.isFinite(baseDelay)
-                ? Math.max(0, baseDelay)
-                : 0;
-            const nextDelay = isCompactViewport
-                ? Math.min(90, Math.round(safeDelay * 0.4))
-                : safeDelay;
-
-            if (nextDelay > 0) {
-                element.setAttribute("data-aos-delay", String(nextDelay));
-            } else {
-                element.removeAttribute("data-aos-delay");
-            }
-        });
-    }
-
-    function initScrollAnimations() {
-        if (scrollAnimationsInitialized) {
-            return;
-        }
-
-        prepareScrollAnimations(document);
-
+    function initAOS() {
         if (
-            reducedMotionQuery.matches ||
             !window.AOS ||
             typeof window.AOS.init !== "function"
         ) {
-            revealScrollAnimationContent(document);
+            document.documentElement.classList.add(
+                "aos-unavailable"
+            );
             return;
         }
 
-        window.AOS.init(getScrollAnimationOptions());
-
-        scrollAnimationsInitialized = true;
-    }
-
-    function refreshScrollAnimations(root) {
-        prepareScrollAnimations(root || document);
-
-        if (
-            reducedMotionQuery.matches ||
-            !window.AOS ||
-            typeof window.AOS.refresh !== "function"
-        ) {
-            revealScrollAnimationContent(root || document);
-            return;
-        }
-
-        if (!scrollAnimationsInitialized) {
-            initScrollAnimations();
-        }
-
-        window.AOS.refresh();
-    }
-
-    function queueScrollAnimationRefresh(delay, root) {
-        window.clearTimeout(scrollAnimationRefreshTimer);
-
-        scrollAnimationRefreshTimer = window.setTimeout(function () {
-            refreshScrollAnimations(root || document);
-        }, typeof delay === "number" ? delay : 340);
+        window.AOS.init({
+            once: true,
+            mirror: false,
+            duration: 650,
+            easing: "ease-out-cubic",
+            offset: 60,
+            delay: 0,
+            anchorPlacement: "top-bottom",
+            debounceDelay: 100,
+            throttleDelay: 120,
+            disableMutationObserver: true,
+            disable: function () {
+                return window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                ).matches;
+            }
+        });
     }
 
     function getAccordionTriggers(container) {
@@ -1701,7 +1601,6 @@
                 }
 
                 setAccordionState(trigger, !isOpen, container);
-                queueScrollAnimationRefresh(360);
             });
 
             trigger.addEventListener("keydown", function (event) {
@@ -2231,8 +2130,6 @@
         function handleChange(event) {
             if (event.matches) {
                 revealScrollAnimationContent(document);
-            } else {
-                refreshScrollAnimations(document);
             }
 
             window.dispatchEvent(
@@ -2327,8 +2224,7 @@
         initCookieConsent();
         initBackToTop();
         renderIcons();
-        initScrollAnimations();
-        queueScrollAnimationRefresh(80);
+        initAOS();
         initMotionPreferenceListener();
 
         window.dispatchEvent(
@@ -2357,8 +2253,6 @@
         escapeHtml: escapeHtml,
         normalizeUrl: normalizeUrl,
         renderIcons: renderIcons,
-        refreshScrollAnimations: refreshScrollAnimations,
-        queueScrollAnimationRefresh: queueScrollAnimationRefresh,
         initAccordions: initAccordions,
         applyConfigBindings: applyConfigBindings,
         updateFaqStructuredData: updateFaqStructuredData,

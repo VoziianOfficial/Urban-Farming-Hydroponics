@@ -86,17 +86,6 @@
         }
     }
 
-    function refreshScrollAnimations() {
-        const growwise = getGrowwise();
-
-        if (
-            growwise &&
-            typeof growwise.refreshScrollAnimations === "function"
-        ) {
-            growwise.refreshScrollAnimations();
-        }
-    }
-
     function getHeaderOffset() {
         const header = query(".site-header", query("[data-site-header]"));
         const headerHeight = header
@@ -1393,7 +1382,6 @@
                 collaborationParallax.refresh();
             }
 
-            refreshScrollAnimations();
         });
 
         window.addEventListener(
@@ -1405,7 +1393,6 @@
                     collaborationParallax.refresh();
                 }
 
-                refreshScrollAnimations();
             },
             {
                 once: true

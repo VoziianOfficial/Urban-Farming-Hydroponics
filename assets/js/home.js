@@ -67,17 +67,6 @@
         }
     }
 
-    function refreshScrollAnimations() {
-        const growwise = getGrowwise();
-
-        if (
-            growwise &&
-            typeof growwise.refreshScrollAnimations === "function"
-        ) {
-            growwise.refreshScrollAnimations();
-        }
-    }
-
     function createSwiper(root, options) {
         const growwise = getGrowwise();
 
@@ -1081,7 +1070,6 @@
                 parallaxController.refresh();
             }
 
-            refreshScrollAnimations();
         });
 
         window.addEventListener(
@@ -1093,7 +1081,6 @@
                     parallaxController.refresh();
                 }
 
-                refreshScrollAnimations();
             },
             {
                 once: true
@@ -1358,14 +1345,6 @@
         initFieldNotesTilt();
         renderIcons();
 
-        const growwise = getGrowwise();
-
-        if (
-            growwise &&
-            typeof growwise.refreshScrollAnimations === "function"
-        ) {
-            growwise.refreshScrollAnimations();
-        }
     }
 
     function start() {

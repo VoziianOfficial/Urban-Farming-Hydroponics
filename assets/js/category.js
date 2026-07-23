@@ -97,17 +97,6 @@
         }
     }
 
-    function refreshScrollAnimations() {
-        const growwise = getGrowwise();
-
-        if (
-            growwise &&
-            typeof growwise.refreshScrollAnimations === "function"
-        ) {
-            growwise.refreshScrollAnimations();
-        }
-    }
-
     function createSwiper(root, options) {
         if (!root) {
             return null;
@@ -1091,7 +1080,6 @@
             environmentParallax.refresh();
         }
 
-        refreshScrollAnimations();
     }
 
     function initCategoryPage() {
