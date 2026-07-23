@@ -500,7 +500,6 @@
             buttons.length === 0 ||
             !panel ||
             !image ||
-            !label ||
             !title ||
             !text ||
             !factOne ||
@@ -521,9 +520,12 @@
         let changeTimer = 0;
 
         function applyContent(button, loadedSource) {
-            label.textContent =
-                button.dataset.detailLabel ||
-                button.textContent.trim();
+            if (label) {
+                label.textContent =
+                    button.dataset.detailLabel ||
+                    button.textContent.trim();
+            }
+
             title.textContent = button.dataset.detailTitle || "";
             text.textContent = button.dataset.detailText || "";
             factOne.textContent =
