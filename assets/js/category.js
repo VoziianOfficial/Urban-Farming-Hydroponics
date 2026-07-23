@@ -245,7 +245,10 @@
 
         const containerRect = container.getBoundingClientRect();
         const elementRect = element.getBoundingClientRect();
-        const outsideLeft = elementRect.left < containerRect.left;
+
+        const outsideLeft =
+            elementRect.left < containerRect.left;
+
         const outsideRight =
             elementRect.right > containerRect.right;
 
@@ -253,10 +256,21 @@
             return;
         }
 
-        element.scrollIntoView({
-            behavior: prefersReducedMotion() ? "auto" : "smooth",
-            block: "nearest",
-            inline: "center"
+        const elementCenter =
+            elementRect.left -
+            containerRect.left +
+            container.scrollLeft +
+            elementRect.width / 2;
+
+        const targetLeft =
+            elementCenter -
+            container.clientWidth / 2;
+
+        container.scrollTo({
+            left: Math.max(0, targetLeft),
+            behavior: prefersReducedMotion()
+                ? "auto"
+                : "smooth"
         });
     }
 
