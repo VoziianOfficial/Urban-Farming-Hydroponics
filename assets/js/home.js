@@ -1004,3 +1004,268 @@
 
     start();
 })();
+
+(function () {
+    "use strict";
+
+    let initialized = false;
+
+    function getGrowwise() {
+        return window.Growwise || null;
+    }
+
+    function prefersReducedMotion() {
+        const growwise = getGrowwise();
+
+        if (
+            growwise &&
+            typeof growwise.prefersReducedMotion === "function"
+        ) {
+            return Boolean(growwise.prefersReducedMotion());
+        }
+
+        if (
+            growwise &&
+            typeof growwise.prefersReducedMotion === "boolean"
+        ) {
+            return growwise.prefersReducedMotion;
+        }
+
+        return window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+    }
+
+    function renderIcons() {
+        const growwise = getGrowwise();
+
+        if (
+            growwise &&
+            typeof growwise.renderIcons === "function"
+        ) {
+            growwise.renderIcons();
+            return;
+        }
+
+        if (
+            window.lucide &&
+            typeof window.lucide.createIcons === "function"
+        ) {
+            window.lucide.createIcons();
+        }
+    }
+
+    function initFieldNotesSwiper() {
+        const root = document.querySelector(
+            "[data-home-field-notes-swiper]"
+        );
+
+        if (!root) {
+            return null;
+        }
+
+        const previousButton = document.querySelector(
+            "[data-home-field-notes-previous]"
+        );
+
+        const nextButton = document.querySelector(
+            "[data-home-field-notes-next]"
+        );
+
+        const pagination = document.querySelector(
+            "[data-home-field-notes-pagination]"
+        );
+
+        const growwise = getGrowwise();
+
+        if (
+            !growwise ||
+            typeof growwise.createSwiperOnce !== "function"
+        ) {
+            return null;
+        }
+
+        return growwise.createSwiperOnce(root, {
+            speed: prefersReducedMotion() ? 0 : 720,
+            slidesPerView: 1,
+            slidesPerGroup: 1,
+            spaceBetween: 16,
+            grabCursor: !prefersReducedMotion(),
+            watchOverflow: true,
+            observer: true,
+            observeParents: true,
+            resizeObserver: true,
+            keyboard: {
+                enabled: true,
+                onlyInViewport: true
+            },
+            autoplay: prefersReducedMotion()
+                ? false
+                : {
+                    delay: 5600,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
+                },
+            navigation: {
+                prevEl: previousButton,
+                nextEl: nextButton
+            },
+            pagination: {
+                el: pagination,
+                clickable: true
+            },
+            a11y: {
+                enabled: true,
+                prevSlideMessage: "Previous practical growing note",
+                nextSlideMessage: "Next practical growing note",
+                firstSlideMessage: "This is the first growing note",
+                lastSlideMessage: "This is the last growing note",
+                paginationBulletMessage: "Go to growing note {{index}}"
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 18
+                },
+                768: {
+                    slidesPerView: 1,
+                    spaceBetween: 22
+                },
+                1024: {
+                    slidesPerView: 2,
+                    spaceBetween: 28
+                }
+            }
+        });
+    }
+
+    function initFieldNotesTilt() {
+        const cards = Array.from(
+            document.querySelectorAll(
+                "[data-home-field-note]"
+            )
+        );
+
+        const precisePointer = window.matchMedia(
+            "(hover: hover) and (pointer: fine)"
+        ).matches;
+
+        if (
+            cards.length === 0 ||
+            !precisePointer ||
+            prefersReducedMotion()
+        ) {
+            return;
+        }
+
+        cards.forEach(function (card) {
+            let frame = 0;
+
+            function reset() {
+                window.cancelAnimationFrame(frame);
+
+                card.style.transform =
+                    "rotateX(0deg) rotateY(0deg) translateY(0)";
+            }
+
+            card.addEventListener(
+                "pointermove",
+                function (event) {
+                    const rectangle =
+                        card.getBoundingClientRect();
+
+                    const x =
+                        event.clientX - rectangle.left;
+
+                    const y =
+                        event.clientY - rectangle.top;
+
+                    const horizontal =
+                        x / rectangle.width - 0.5;
+
+                    const vertical =
+                        y / rectangle.height - 0.5;
+
+                    card.style.setProperty(
+                        "--note-light-x",
+                        `${x}px`
+                    );
+
+                    card.style.setProperty(
+                        "--note-light-y",
+                        `${y}px`
+                    );
+
+                    window.cancelAnimationFrame(frame);
+
+                    frame = window.requestAnimationFrame(
+                        function () {
+                            card.style.transform =
+                                `rotateX(${vertical * -4}deg) ` +
+                                `rotateY(${horizontal * 5}deg) ` +
+                                "translateY(-7px)";
+                        }
+                    );
+                }
+            );
+
+            card.addEventListener("pointerleave", reset);
+            card.addEventListener("pointercancel", reset);
+        });
+    }
+
+    function initFieldNotes() {
+        if (initialized) {
+            return;
+        }
+
+        const section = document.querySelector(
+            "[data-home-field-notes]"
+        );
+
+        if (!section) {
+            return;
+        }
+
+        initialized = true;
+
+        initFieldNotesSwiper();
+        initFieldNotesTilt();
+        renderIcons();
+
+        const growwise = getGrowwise();
+
+        if (
+            growwise &&
+            typeof growwise.refreshAOS === "function"
+        ) {
+            growwise.refreshAOS();
+        }
+    }
+
+    function start() {
+        const growwise = getGrowwise();
+
+        if (
+            growwise &&
+            typeof growwise.ready === "function"
+        ) {
+            growwise.ready(initFieldNotes);
+            return;
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener(
+                "DOMContentLoaded",
+                initFieldNotes,
+                {
+                    once: true
+                }
+            );
+        } else {
+            initFieldNotes();
+        }
+    }
+
+    start();
+})();
