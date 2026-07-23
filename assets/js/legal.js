@@ -78,22 +78,14 @@
         }
     }
 
-    function refreshAOS() {
+    function refreshScrollAnimations() {
         const growwise = getGrowwise();
 
         if (
             growwise &&
-            typeof growwise.refreshAOS === "function"
+            typeof growwise.refreshScrollAnimations === "function"
         ) {
-            growwise.refreshAOS();
-            return;
-        }
-
-        if (
-            window.AOS &&
-            typeof window.AOS.refreshHard === "function"
-        ) {
-            window.AOS.refreshHard();
+            growwise.refreshScrollAnimations();
         }
     }
 
@@ -477,7 +469,7 @@
         renderIcons();
 
         window.requestAnimationFrame(function () {
-            refreshAOS();
+            refreshScrollAnimations();
             initHashPosition();
         });
 
@@ -485,7 +477,7 @@
             "load",
             function () {
                 setHeaderHeightVariable();
-                refreshAOS();
+                refreshScrollAnimations();
             },
             {
                 once: true

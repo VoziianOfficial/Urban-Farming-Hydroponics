@@ -67,14 +67,14 @@
         }
     }
 
-    function refreshAOS() {
+    function refreshScrollAnimations() {
         const growwise = getGrowwise();
 
         if (
             growwise &&
-            typeof growwise.refreshAOS === "function"
+            typeof growwise.refreshScrollAnimations === "function"
         ) {
-            growwise.refreshAOS();
+            growwise.refreshScrollAnimations();
         }
     }
 
@@ -1081,7 +1081,7 @@
                 parallaxController.refresh();
             }
 
-            refreshAOS();
+            refreshScrollAnimations();
         });
 
         window.addEventListener(
@@ -1093,7 +1093,7 @@
                     parallaxController.refresh();
                 }
 
-                refreshAOS();
+                refreshScrollAnimations();
             },
             {
                 once: true
@@ -1362,9 +1362,9 @@
 
         if (
             growwise &&
-            typeof growwise.refreshAOS === "function"
+            typeof growwise.refreshScrollAnimations === "function"
         ) {
-            growwise.refreshAOS();
+            growwise.refreshScrollAnimations();
         }
     }
 

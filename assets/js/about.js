@@ -37,14 +37,14 @@
         ).matches;
     }
 
-    function refreshAOS() {
+    function refreshScrollAnimations() {
         const growwise = getGrowwise();
 
         if (
             growwise &&
-            typeof growwise.refreshAOS === "function"
+            typeof growwise.refreshScrollAnimations === "function"
         ) {
-            growwise.refreshAOS();
+            growwise.refreshScrollAnimations();
         }
     }
 
@@ -412,7 +412,7 @@
                 contextParallax.refresh();
             }
 
-            refreshAOS();
+            refreshScrollAnimations();
         });
 
         window.addEventListener(
@@ -424,7 +424,7 @@
                     contextParallax.refresh();
                 }
 
-                refreshAOS();
+                refreshScrollAnimations();
             },
             {
                 once: true
@@ -784,9 +784,9 @@
 
         if (
             growwise &&
-            typeof growwise.refreshAOS === "function"
+            typeof growwise.refreshScrollAnimations === "function"
         ) {
-            growwise.refreshAOS();
+            growwise.refreshScrollAnimations();
         }
     }
 

@@ -97,22 +97,14 @@
         }
     }
 
-    function refreshAOS() {
+    function refreshScrollAnimations() {
         const growwise = getGrowwise();
 
         if (
             growwise &&
-            typeof growwise.refreshAOS === "function"
+            typeof growwise.refreshScrollAnimations === "function"
         ) {
-            growwise.refreshAOS();
-            return;
-        }
-
-        if (
-            window.AOS &&
-            typeof window.AOS.refreshHard === "function"
-        ) {
-            window.AOS.refreshHard();
+            growwise.refreshScrollAnimations();
         }
     }
 
@@ -1099,7 +1091,7 @@
             environmentParallax.refresh();
         }
 
-        refreshAOS();
+        refreshScrollAnimations();
     }
 
     function initCategoryPage() {

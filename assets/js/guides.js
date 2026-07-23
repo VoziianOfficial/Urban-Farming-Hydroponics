@@ -65,14 +65,14 @@
         }
     }
 
-    function refreshAOS() {
+    function refreshScrollAnimations() {
         const growwise = getGrowwise();
 
         if (
             growwise &&
-            typeof growwise.refreshAOS === "function"
+            typeof growwise.refreshScrollAnimations === "function"
         ) {
-            growwise.refreshAOS();
+            growwise.refreshScrollAnimations();
         }
     }
 
@@ -1107,7 +1107,7 @@
             topicNavigatorController.refresh();
         }
 
-        refreshAOS();
+        refreshScrollAnimations();
     }
 
     function initGuidesPage() {
@@ -1332,9 +1332,9 @@
 
         if (
             growwise &&
-            typeof growwise.refreshAOS === "function"
+            typeof growwise.refreshScrollAnimations === "function"
         ) {
-            growwise.refreshAOS();
+            growwise.refreshScrollAnimations();
         }
     }
     function start() {
