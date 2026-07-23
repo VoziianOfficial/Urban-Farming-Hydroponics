@@ -845,7 +845,9 @@
     }
 
     function createParallaxController() {
-        const sections = queryAll("[data-home-parallax]");
+        const sections = queryAll(
+            "[data-home-parallax], [data-home-parallax-block]"
+        );
 
         if (sections.length === 0) {
             return null;

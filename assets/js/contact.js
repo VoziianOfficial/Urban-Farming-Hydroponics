@@ -7,12 +7,6 @@
         return;
     }
 
-    const body = document.body;
-
-    if (!body || body.dataset.page !== "contact") {
-        return;
-    }
-
     let initialized = false;
     let submitting = false;
     let activeRequest = null;
