@@ -2709,3 +2709,258 @@
     }
 }
 
+/* ========================================
+   CATEGORY OVERVIEW — MOBILE
+======================================== */
+
+@media (max-width: 767px) {
+    .category-overview {
+        display: block !important;
+        overflow: hidden;
+        padding-block: 4.5rem;
+        background:
+            radial-gradient(circle at 100% 0,
+                rgba(82, 215, 204, 0.11),
+                transparent 15rem),
+            var(--color-white);
+    }
+
+    .category-overview::before {
+        top: 2.5rem;
+        left: -4.5rem;
+        width: 9rem;
+        height: 3.5rem;
+        opacity: 0.7;
+    }
+
+    .category-overview__layout {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    /* ==============================
+       TEXT CONTENT
+    ============================== */
+
+    .category-overview__intro {
+        display: grid;
+        gap: 1.15rem;
+        min-width: 0;
+    }
+
+    .category-overview__intro .site-eyebrow {
+        font-size: 0.68rem;
+        letter-spacing: 0.13em;
+    }
+
+    .category-overview__intro .site-heading {
+        max-width: 12ch;
+        font-size: clamp(2.35rem, 10vw, 3.4rem);
+        line-height: 0.98;
+        letter-spacing: -0.052em;
+    }
+
+    .category-overview__intro>.site-copy {
+        max-width: none;
+        font-size: 0.95rem;
+        line-height: 1.72;
+    }
+
+    .category-overview__intro>.site-copy+.site-copy {
+        margin-top: -0.35rem;
+        color: var(--color-muted);
+    }
+
+    /* ==============================
+       POINTS
+    ============================== */
+
+    .category-overview__points {
+        display: grid;
+        gap: 0.75rem;
+        margin-top: 0.75rem;
+        border-top: 0;
+    }
+
+    .category-overview__point {
+        position: relative;
+        display: grid;
+        grid-template-columns: 2.75rem minmax(0, 1fr);
+        gap: 0.9rem;
+        align-items: start;
+        padding: 1.15rem;
+        overflow: hidden;
+        border: 1px solid var(--color-border);
+        border-radius: 1.1rem;
+        background: var(--color-warm-white);
+        box-shadow: 0 0.65rem 1.8rem rgba(9, 13, 11, 0.055);
+    }
+
+    .category-overview__point::after {
+        position: absolute;
+        right: -2.75rem;
+        bottom: -3rem;
+        width: 7rem;
+        height: 7rem;
+        border-radius: 50%;
+        background: var(--color-lime);
+        content: "";
+        opacity: 0.08;
+        pointer-events: none;
+    }
+
+    .category-overview__point:nth-child(2)::after {
+        background: var(--color-hydro);
+    }
+
+    .category-overview__point:nth-child(3)::after {
+        background: var(--color-clay);
+    }
+
+    .category-overview__point>svg {
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin: 0;
+        padding: 0.72rem;
+        border: 1px solid var(--color-border);
+        border-radius: 50%;
+        background: var(--color-white);
+        color: var(--color-forest);
+    }
+
+    .category-overview__point:nth-child(2)>svg {
+        color: #278d86;
+    }
+
+    .category-overview__point:nth-child(3)>svg {
+        color: var(--color-clay);
+    }
+
+    .category-overview__point>div {
+        position: relative;
+        z-index: 1;
+        min-width: 0;
+    }
+
+    .category-overview__point h3 {
+        margin-bottom: 0.35rem;
+        font-size: 1rem;
+        line-height: 1.2;
+    }
+
+    .category-overview__point p {
+        font-size: 0.8rem;
+        line-height: 1.62;
+    }
+
+    /* ==============================
+       BUTTON
+    ============================== */
+
+    .category-overview__intro .site-button {
+        width: 100%;
+        margin-top: 0.5rem;
+        min-height: 3.45rem;
+    }
+
+    /* ==============================
+       IMAGE COMPOSITION
+    ============================== */
+
+    .category-overview__visual,
+    .category-overview__visual.site-sticky {
+        position: relative !important;
+        top: auto !important;
+        align-self: stretch;
+        width: 100%;
+        min-height: 31rem;
+        margin-top: 0.25rem;
+        transform: none;
+    }
+
+    .category-overview__primary-image {
+        top: 0;
+        right: 0;
+        width: calc(100% - 2.25rem);
+        height: 25rem;
+        border-radius:
+            1.5rem 4.5rem 1.5rem 1.5rem;
+        box-shadow: 0 1.5rem 3.5rem rgba(9, 13, 11, 0.14);
+    }
+
+    .category-overview__primary-image img {
+        object-position: center;
+    }
+
+    .category-overview__detail-image {
+        bottom: 0;
+        left: 0;
+        width: 48%;
+        min-width: 9.5rem;
+        max-width: 12rem;
+        border-width: 0.4rem;
+        border-radius:
+            1.15rem 1.15rem 3rem 1.15rem;
+        box-shadow: 0 1rem 2.4rem rgba(9, 13, 11, 0.17);
+    }
+
+    .category-overview__note {
+        top: auto;
+        right: 0;
+        bottom: 0.6rem;
+        left: auto;
+        width: calc(52% - 0.5rem);
+        padding: 0.85rem;
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.97);
+        box-shadow: 0 0.85rem 2.2rem rgba(9, 13, 11, 0.12);
+        font-size: 0.68rem;
+        line-height: 1.48;
+    }
+
+    .category-overview__note svg {
+        width: 1.05rem;
+        height: 1.05rem;
+    }
+
+    /* Убираем тяжёлые hover-эффекты на touch-экранах */
+    .category-overview__visual:hover .category-overview__primary-image img,
+    .category-overview__detail-image:hover img {
+        transform: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .category-overview {
+        padding-block: 4rem;
+    }
+
+    .category-overview__layout {
+        gap: 2.6rem;
+    }
+
+    .category-overview__visual,
+    .category-overview__visual.site-sticky {
+        min-height: 29rem;
+    }
+
+    .category-overview__primary-image {
+        width: calc(100% - 1.5rem);
+        height: 23rem;
+    }
+
+    .category-overview__detail-image {
+        width: 46%;
+        min-width: 8.75rem;
+    }
+
+    .category-overview__note {
+        width: calc(54% - 0.25rem);
+        padding: 0.72rem;
+        font-size: 0.63rem;
+    }
+}
