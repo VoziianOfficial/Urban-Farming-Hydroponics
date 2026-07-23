@@ -313,7 +313,6 @@ hr {
     align-items: center;
     gap: 0.65rem;
     width: fit-content;
-    color: var(--color-forest);
     font-size: 0.75rem;
     font-weight: 800;
     letter-spacing: 0.15em;
