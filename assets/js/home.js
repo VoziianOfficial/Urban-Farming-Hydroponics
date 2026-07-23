@@ -8,6 +8,7 @@
     }
 
     let heroSwiper = null;
+    let categoryCirclesSwiper = null;
     let systemsSwiper = null;
     let questionsSwiper = null;
     let parallaxController = null;
@@ -81,13 +82,27 @@
         const growwise = getGrowwise();
 
         if (
-            !growwise ||
-            typeof growwise.createSwiperOnce !== "function"
+            growwise &&
+            typeof growwise.createSwiperOnce === "function"
         ) {
-            return null;
+            return growwise.createSwiperOnce(root, options);
         }
 
-        return growwise.createSwiperOnce(root, options);
+        if (
+            root &&
+            window.Swiper &&
+            typeof window.Swiper === "function"
+        ) {
+            if (root.growwiseSwiper) {
+                return root.growwiseSwiper;
+            }
+
+            root.growwiseSwiper = new window.Swiper(root, options || {});
+
+            return root.growwiseSwiper;
+        }
+
+        return null;
     }
 
     function sanitizeIconName(value) {
@@ -307,6 +322,110 @@
 
         window.addEventListener("growwise:motion-change", syncAutoplay);
         syncAutoplay();
+
+        return instance;
+    }
+
+    function initCategoryCirclesSwiper() {
+        const section = query(".home-oval-categories");
+        const root = query(
+            "[data-home-oval-categories-swiper]",
+            section
+        );
+        const previousButton =
+            query("[data-home-oval-categories-previous]", section) ||
+            query(".home-oval-categories__button:first-child", section);
+        const nextButton =
+            query("[data-home-oval-categories-next]", section) ||
+            query(".home-oval-categories__button:last-child", section);
+
+        if (!root) {
+            return null;
+        }
+
+        const instance = createSwiper(root, {
+            speed: isReducedMotion() ? 0 : 650,
+            slidesPerView: 1.18,
+            slidesPerGroup: 1,
+            spaceBetween: 16,
+            grabCursor: !isReducedMotion(),
+            simulateTouch: true,
+            threshold: 6,
+            rewind: true,
+            watchOverflow: true,
+            observer: true,
+            observeParents: true,
+            resizeObserver: true,
+            keyboard: {
+                enabled: true,
+                onlyInViewport: true
+            },
+            navigation: {
+                prevEl: previousButton,
+                nextEl: nextButton
+            },
+            a11y: {
+                enabled: true,
+                prevSlideMessage: "Previous category",
+                nextSlideMessage: "Next category",
+                firstSlideMessage: "This is the first category",
+                lastSlideMessage: "This is the last category"
+            },
+            breakpoints: {
+                575: {
+                    slidesPerView: 2,
+                    spaceBetween: 18
+                },
+                768: {
+                    slidesPerView: 2.7,
+                    spaceBetween: 22
+                },
+                1100: {
+                    slidesPerView: 3.4,
+                    spaceBetween: 28
+                }
+            }
+        });
+
+        if (previousButton) {
+            previousButton.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                if (instance && typeof instance.slidePrev === "function") {
+                    instance.slidePrev();
+                    return;
+                }
+
+                root.scrollBy({
+                    left: -root.clientWidth * 0.85,
+                    behavior: isReducedMotion() ? "auto" : "smooth"
+                });
+            });
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                if (instance && typeof instance.slideNext === "function") {
+                    instance.slideNext();
+                    return;
+                }
+
+                root.scrollBy({
+                    left: root.clientWidth * 0.85,
+                    behavior: isReducedMotion() ? "auto" : "smooth"
+                });
+            });
+        }
+
+        if (instance) {
+            window.requestAnimationFrame(function () {
+                if (typeof instance.update === "function") {
+                    instance.update();
+                }
+            });
+        }
 
         return instance;
     }
@@ -919,9 +1038,12 @@
     }
 
     function refreshSwipers() {
-        [heroSwiper, systemsSwiper, questionsSwiper].forEach(function (
-            instance
-        ) {
+        [
+            heroSwiper,
+            categoryCirclesSwiper,
+            systemsSwiper,
+            questionsSwiper
+        ].forEach(function (instance) {
             if (
                 instance &&
                 typeof instance.update === "function"
@@ -943,6 +1065,7 @@
         initBalanceSwitcher();
 
         heroSwiper = initHeroSwiper();
+        categoryCirclesSwiper = initCategoryCirclesSwiper();
         systemsSwiper = initSystemsSwiper();
         questionsSwiper = initQuestionsSwiper();
         parallaxController = createParallaxController();

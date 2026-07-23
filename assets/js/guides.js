@@ -1155,13 +1155,11 @@
     function start() {
         const growwise = getGrowwise();
 
-        if (growwise && growwise.ready) {
-            growwise.ready.then(function (readyState) {
-                if (readyState !== false) {
-                    initGuidesPage();
-                }
-            });
-
+        if (
+            growwise &&
+            typeof growwise.ready === "function"
+        ) {
+            growwise.ready(initOvalCategories);
             return;
         }
 
@@ -1175,6 +1173,191 @@
             );
         } else {
             initGuidesPage();
+        }
+    }
+
+    start();
+})();
+
+(function () {
+    "use strict";
+
+    const body = document.body;
+
+    if (!body || body.dataset.page !== "guides") {
+        return;
+    }
+
+    let initialized = false;
+
+    function getGrowwise() {
+        return window.Growwise || null;
+    }
+
+    function prefersReducedMotion() {
+        const growwise = getGrowwise();
+
+        if (
+            growwise &&
+            typeof growwise.prefersReducedMotion === "function"
+        ) {
+            return Boolean(growwise.prefersReducedMotion());
+        }
+
+        if (
+            growwise &&
+            typeof growwise.prefersReducedMotion === "boolean"
+        ) {
+            return growwise.prefersReducedMotion;
+        }
+
+        return window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+    }
+
+    function renderIcons() {
+        const growwise = getGrowwise();
+
+        if (
+            growwise &&
+            typeof growwise.renderIcons === "function"
+        ) {
+            growwise.renderIcons();
+            return;
+        }
+
+        if (
+            window.lucide &&
+            typeof window.lucide.createIcons === "function"
+        ) {
+            window.lucide.createIcons();
+        }
+    }
+
+    function initOvalCategorySwiper() {
+        const root = document.querySelector(
+            "[data-guides-oval-swiper]"
+        );
+
+        if (!root) {
+            return null;
+        }
+
+        const previousButton = document.querySelector(
+            "[data-guides-oval-prev]"
+        );
+
+        const nextButton = document.querySelector(
+            "[data-guides-oval-next]"
+        );
+
+        const pagination = document.querySelector(
+            "[data-guides-oval-pagination]"
+        );
+
+        const growwise = getGrowwise();
+
+        if (
+            !growwise ||
+            typeof growwise.createSwiperOnce !== "function"
+        ) {
+            return null;
+        }
+
+        return growwise.createSwiperOnce(root, {
+            speed: prefersReducedMotion() ? 0 : 720,
+            slidesPerView: 1.08,
+            slidesPerGroup: 1,
+            spaceBetween: 16,
+            grabCursor: !prefersReducedMotion(),
+            watchOverflow: true,
+            observer: true,
+            observeParents: true,
+            resizeObserver: true,
+
+            keyboard: {
+                enabled: true,
+                onlyInViewport: true
+            },
+
+            navigation: {
+                prevEl: previousButton,
+                nextEl: nextButton
+            },
+
+            pagination: {
+                el: pagination,
+                clickable: true
+            },
+
+            breakpoints: {
+                640: {
+                    slidesPerView: 1.35,
+                    spaceBetween: 18
+                },
+
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20
+                },
+
+                1100: {
+                    slidesPerView: 3,
+                    spaceBetween: 24
+                }
+            }
+        });
+    }
+
+    function initOvalCategories() {
+        if (initialized) {
+            return;
+        }
+
+        const section = document.querySelector(
+            "[data-guides-oval-categories]"
+        );
+
+        if (!section) {
+            return;
+        }
+
+        initialized = true;
+
+        initOvalCategorySwiper();
+        renderIcons();
+
+        const growwise = getGrowwise();
+
+        if (
+            growwise &&
+            typeof growwise.refreshAOS === "function"
+        ) {
+            growwise.refreshAOS();
+        }
+    }
+    function start() {
+        const growwise = getGrowwise();
+
+        if (
+            growwise &&
+            typeof growwise.ready === "function"
+        ) {
+            growwise.ready(initOvalCategories);
+            return;
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener(
+                "DOMContentLoaded",
+                initOvalCategories,
+                {
+                    once: true
+                }
+            );
+        } else {
+            initOvalCategories();
         }
     }
 

@@ -195,10 +195,23 @@
             </div>
         </nav>
 
-        <section class="home-category-circles" aria-label="Explore indoor growing categories">
+        <section class="home-category-circles home-oval-categories" aria-label="Explore indoor growing categories">
             <div class="site-container-wide">
-                <div class="home-category-circles__track">
-                    <a class="home-category-circles__item" href="microgreens.html" data-aos="growwise-fade-up">
+                <div class="home-oval-categories__controls home-category-circles__toolbar">
+                    <button class="home-oval-categories__button home-category-circles__button" type="button"
+                        aria-label="Previous category" data-home-oval-categories-previous>
+                        <i data-lucide="arrow-left" aria-hidden="true"></i>
+                    </button>
+                    <button class="home-oval-categories__button home-category-circles__button" type="button"
+                        aria-label="Next category" data-home-oval-categories-next>
+                        <i data-lucide="arrow-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="swiper home-category-circles__swiper" data-home-oval-categories-swiper
+                    aria-label="Indoor growing category carousel">
+                    <div class="swiper-wrapper home-category-circles__track">
+                    <a class="swiper-slide home-category-circles__item" href="microgreens.html" data-aos="growwise-fade-up">
                         <span class="home-category-circles__visual">
                             <img src="assets/images/category-microgreens.webp" alt="" width="700" height="700" loading="lazy"
                                 decoding="async">
@@ -220,7 +233,7 @@
                         </span>
                     </a>
         
-                    <a class="home-category-circles__item" href="indoor-herbs.html" data-aos="growwise-fade-up"
+                    <a class="swiper-slide home-category-circles__item" href="indoor-herbs.html" data-aos="growwise-fade-up"
                         data-aos-delay="70">
                         <span class="home-category-circles__visual">
                             <img src="assets/images/category-herbs.webp" alt="" width="700" height="700" loading="lazy"
@@ -243,7 +256,7 @@
                         </span>
                     </a>
         
-                    <a class="home-category-circles__item home-category-circles__item--featured" href="hydroponic-systems.html"
+                    <a class="swiper-slide home-category-circles__item home-category-circles__item--featured" href="hydroponic-systems.html"
                         data-aos="growwise-fade-up" data-aos-delay="140">
                         <span class="home-category-circles__visual">
                             <img src="assets/images/category-hydroponics.webp" alt="" width="700" height="700" loading="lazy"
@@ -266,7 +279,7 @@
                         </span>
                     </a>
         
-                    <a class="home-category-circles__item" href="grow-lights.html" data-aos="growwise-fade-up"
+                    <a class="swiper-slide home-category-circles__item" href="grow-lights.html" data-aos="growwise-fade-up"
                         data-aos-delay="210">
                         <span class="home-category-circles__visual">
                             <img src="assets/images/category-grow-lights.webp" alt="" width="700" height="700" loading="lazy"
@@ -289,7 +302,7 @@
                         </span>
                     </a>
         
-                    <a class="home-category-circles__item" href="automatic-watering.html" data-aos="growwise-fade-up"
+                    <a class="swiper-slide home-category-circles__item" href="automatic-watering.html" data-aos="growwise-fade-up"
                         data-aos-delay="280">
                         <span class="home-category-circles__visual">
                             <img src="assets/images/category-watering.webp" alt="" width="700" height="700" loading="lazy"
@@ -311,6 +324,99 @@
                             <small>Delivery and drainage</small>
                         </span>
                     </a>
+
+                    <a class="swiper-slide home-category-circles__item" href="growing-mushrooms.html" data-aos="growwise-fade-up"
+                        data-aos-delay="350">
+                        <span class="home-category-circles__visual">
+                            <img src="assets/images/category-mushrooms.webp" alt="" width="700" height="700" loading="lazy"
+                                decoding="async">
+
+                            <span class="home-category-circles__veil"></span>
+
+                            <span class="home-category-circles__icon">
+                                <i data-lucide="circle-dot" aria-hidden="true"></i>
+                            </span>
+
+                            <span class="home-category-circles__arrow">
+                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                            </span>
+                        </span>
+
+                        <span class="home-category-circles__content">
+                            <strong>Mushrooms</strong>
+                            <small>Humidity and fruiting</small>
+                        </span>
+                    </a>
+
+                    <a class="swiper-slide home-category-circles__item" href="indoor-strawberries.html" data-aos="growwise-fade-up"
+                        data-aos-delay="420">
+                        <span class="home-category-circles__visual">
+                            <img src="assets/images/category-strawberries.webp" alt="" width="700" height="700" loading="lazy"
+                                decoding="async">
+
+                            <span class="home-category-circles__veil"></span>
+
+                            <span class="home-category-circles__icon">
+                                <i data-lucide="flower-2" aria-hidden="true"></i>
+                            </span>
+
+                            <span class="home-category-circles__arrow">
+                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                            </span>
+                        </span>
+
+                        <span class="home-category-circles__content">
+                            <strong>Strawberries</strong>
+                            <small>Containers and light</small>
+                        </span>
+                    </a>
+
+                    <a class="swiper-slide home-category-circles__item" href="nutrients-growing-media.html" data-aos="growwise-fade-up"
+                        data-aos-delay="490">
+                        <span class="home-category-circles__visual">
+                            <img src="assets/images/category-growing-media.webp" alt="" width="700" height="700" loading="lazy"
+                                decoding="async">
+
+                            <span class="home-category-circles__veil"></span>
+
+                            <span class="home-category-circles__icon">
+                                <i data-lucide="flask-conical" aria-hidden="true"></i>
+                            </span>
+
+                            <span class="home-category-circles__arrow">
+                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                            </span>
+                        </span>
+
+                        <span class="home-category-circles__content">
+                            <strong>Growing Media</strong>
+                            <small>Roots and nutrients</small>
+                        </span>
+                    </a>
+
+                    <a class="swiper-slide home-category-circles__item" href="growing-guides.html" data-aos="growwise-fade-up"
+                        data-aos-delay="560">
+                        <span class="home-category-circles__visual">
+                            <img src="assets/images/guides-hero.webp" alt="" width="700" height="700" loading="lazy"
+                                decoding="async">
+
+                            <span class="home-category-circles__veil"></span>
+
+                            <span class="home-category-circles__icon">
+                                <i data-lucide="book-open-check" aria-hidden="true"></i>
+                            </span>
+
+                            <span class="home-category-circles__arrow">
+                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                            </span>
+                        </span>
+
+                        <span class="home-category-circles__content">
+                            <strong>All Guides</strong>
+                            <small>Starting path</small>
+                        </span>
+                    </a>
+                    </div>
                 </div>
             </div>
         </section>

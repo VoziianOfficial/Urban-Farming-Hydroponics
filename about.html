@@ -27,6 +27,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/about.css">
 </head>
@@ -135,7 +136,12 @@
             </div>
         </section>
 
-        <section class="site-section site-section--black about-clarity" aria-labelledby="about-clarity-title">
+        <section class="site-section site-section--black about-clarity" data-about-parallax data-about-parallax-range="72"
+            aria-labelledby="about-clarity-title">
+            <div class="about-parallax-media about-clarity__media" aria-hidden="true" data-about-parallax-media>
+                <img src="assets/images/guides-hero.webp" alt="" width="2200" height="1350" loading="lazy"
+                    decoding="async">
+            </div>
             <div class="site-container-wide about-clarity__layout">
                 <div class="about-clarity__content" data-aos="growwise-fade-right">
                     <span class="site-eyebrow">Editorial Direction</span>
@@ -276,7 +282,12 @@
             </div>
         </section>
 
-        <section class="site-section site-section--charcoal about-statement" aria-labelledby="about-statement-title">
+        <section class="site-section site-section--charcoal about-statement" data-about-parallax data-about-parallax-range="68"
+            aria-labelledby="about-statement-title">
+            <div class="about-parallax-media about-statement__media" aria-hidden="true" data-about-parallax-media>
+                <img src="assets/images/home-indoor-crops.webp" alt="" width="2200" height="1350" loading="lazy"
+                    decoding="async">
+            </div>
             <div class="site-container-wide about-statement__inner">
                 <span class="site-eyebrow">A Workable Starting Point</span>
                 <h2 id="about-statement-title">
@@ -426,73 +437,231 @@
             </div>
         </section>
 
-
-        <section class="site-section site-section--forest about-collaboration"
-            aria-labelledby="about-collaboration-title">
-            <div class="site-container-wide about-collaboration__layout">
-                <div class="about-collaboration__visual" data-aos="growwise-fade-right">
-                    <div class="about-collaboration__image">
-                        <img src="assets/images/about-collaboration.webp"
-                            alt="A professional reviewing plants and equipment inside a real indoor growing environment"
-                            width="1350" height="1550" loading="lazy" decoding="async">
+        <section class="about-editorial-notes" aria-label="Growwise Urban editorial principles" data-about-editorial-notes>
+            <div class="about-editorial-notes__shape about-editorial-notes__shape--left" aria-hidden="true"></div>
+        
+            <div class="about-editorial-notes__shape about-editorial-notes__shape--right" aria-hidden="true"></div>
+        
+            <div class="site-container-wide about-editorial-notes__inner">
+                <div class="about-editorial-notes__toolbar">
+                    <div class="about-editorial-notes__pagination" data-about-editorial-pagination
+                        aria-label="Editorial principle slides"></div>
+        
+                    <div class="about-editorial-notes__controls">
+                        <button class="about-editorial-notes__button" type="button" aria-label="Previous editorial principle"
+                            data-about-editorial-previous>
+                            <i data-lucide="arrow-left" aria-hidden="true"></i>
+                        </button>
+        
+                        <button class="about-editorial-notes__button" type="button" aria-label="Next editorial principle"
+                            data-about-editorial-next>
+                            <i data-lucide="arrow-right" aria-hidden="true"></i>
+                        </button>
                     </div>
-                    <div class="about-collaboration__shape" aria-hidden="true"></div>
                 </div>
-
-                <div class="about-collaboration__content" data-aos="growwise-fade-up">
-                    <span class="site-eyebrow">Work With the Platform</span>
-                    <h2 class="site-heading" id="about-collaboration-title" data-config-collaboration-title>
-                        Advertise &amp; Collaborate
-                    </h2>
-                    <p class="site-copy" data-config-text="collaboration.teaserText">
-                        Explore advertising opportunities, joint educational projects, workshops, consultations, and
-                        other tailored collaboration formats.
-                    </p>
-
-                    <div class="about-collaboration__benefits">
-                        <article>
-                            <i data-lucide="megaphone" aria-hidden="true"></i>
-                            <div>
-                                <h3>Advertising Opportunities</h3>
-                                <p>
-                                    Discuss relevant brand visibility and tailored promotional concepts for the
-                                    platform’s audience.
-                                </p>
+        
+                <div class="swiper about-editorial-notes__swiper" data-about-editorial-swiper
+                    aria-label="How Growwise Urban approaches growing information">
+                    <div class="swiper-wrapper">
+                        <article class="swiper-slide about-editorial-notes__slide">
+                            <div class="about-editorial-note about-editorial-note--forest" data-about-editorial-card>
+                                <span class="about-editorial-note__light" aria-hidden="true"></span>
+        
+                                <div class="about-editorial-note__symbol" aria-hidden="true">
+                                    <i data-lucide="focus"></i>
+                                </div>
+        
+                                <div class="about-editorial-note__body">
+                                    <span class="about-editorial-note__line" aria-hidden="true"></span>
+        
+                                    <p>
+                                        We explain the decisions around indoor growing equipment,
+                                        not only the equipment itself. Space, crop, access, and
+                                        routine remain part of the conversation.
+                                    </p>
+                                </div>
+        
+                                <div class="about-editorial-note__footer">
+                                    <a class="about-editorial-note__identity" href="growing-guides.html">
+                                        <span class="about-editorial-note__image">
+                                            <img src="assets/images/home-small-space-growing.webp" alt="" width="240"
+                                                height="240" loading="lazy" decoding="async">
+                                        </span>
+        
+                                        <span class="about-editorial-note__identity-text">
+                                            <small>Our purpose</small>
+                                            <strong>Clarity Before Equipment</strong>
+                                        </span>
+                                    </a>
+        
+                                    <a class="about-editorial-note__arrow" href="growing-guides.html"
+                                        aria-label="Explore Growwise Urban growing guides">
+                                        <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
                             </div>
                         </article>
-
-                        <article>
-                            <i data-lucide="handshake" aria-hidden="true"></i>
-                            <div>
-                                <h3>Joint Educational Projects</h3>
-                                <p>
-                                    Explore content, guide, event, and learning concepts built around clearly defined
-                                    goals.
-                                </p>
+        
+                        <article class="swiper-slide about-editorial-notes__slide">
+                            <div class="about-editorial-note about-editorial-note--warm" data-about-editorial-card>
+                                <span class="about-editorial-note__light" aria-hidden="true"></span>
+        
+                                <div class="about-editorial-note__symbol" aria-hidden="true">
+                                    <i data-lucide="git-compare-arrows"></i>
+                                </div>
+        
+                                <div class="about-editorial-note__body">
+                                    <span class="about-editorial-note__line" aria-hidden="true"></span>
+        
+                                    <p>
+                                        A useful comparison should show how methods differ in
+                                        component count, maintenance, root access, cleaning,
+                                        water movement, and suitability for the intended crop.
+                                    </p>
+                                </div>
+        
+                                <div class="about-editorial-note__footer">
+                                    <a class="about-editorial-note__identity" href="hydroponic-systems.html">
+                                        <span class="about-editorial-note__image">
+                                            <img src="assets/images/category-hydroponics.webp" alt="" width="240" height="240"
+                                                loading="lazy" decoding="async">
+                                        </span>
+        
+                                        <span class="about-editorial-note__identity-text">
+                                            <small>Comparison approach</small>
+                                            <strong>Context Before Conclusions</strong>
+                                        </span>
+                                    </a>
+        
+                                    <a class="about-editorial-note__arrow" href="hydroponic-systems.html"
+                                        aria-label="Explore hydroponic system comparisons">
+                                        <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
                             </div>
                         </article>
-
-                        <article>
-                            <i data-lucide="presentation" aria-hidden="true"></i>
-                            <div>
-                                <h3>Workshops and Consultations</h3>
-                                <p>
-                                    Send information about the format, audience, topic, and context you are considering.
-                                    Availability may vary.
-                                </p>
+        
+                        <article class="swiper-slide about-editorial-notes__slide">
+                            <div class="about-editorial-note about-editorial-note--hydro" data-about-editorial-card>
+                                <span class="about-editorial-note__light" aria-hidden="true"></span>
+        
+                                <div class="about-editorial-note__symbol" aria-hidden="true">
+                                    <i data-lucide="maximize-2"></i>
+                                </div>
+        
+                                <div class="about-editorial-note__body">
+                                    <span class="about-editorial-note__line" aria-hidden="true"></span>
+        
+                                    <p>
+                                        An apartment shelf, a basement room, and an early
+                                        small-commercial project require different levels of
+                                        access, workflow planning, equipment, and oversight.
+                                    </p>
+                                </div>
+        
+                                <div class="about-editorial-note__footer">
+                                    <a class="about-editorial-note__identity" href="growing-guides.html">
+                                        <span class="about-editorial-note__image">
+                                            <img src="assets/images/home-hero-apartment-herbs.webp" alt="" width="240"
+                                                height="240" loading="lazy" decoding="async">
+                                        </span>
+        
+                                        <span class="about-editorial-note__identity-text">
+                                            <small>Growing context</small>
+                                            <strong>Different Spaces, Different Paths</strong>
+                                        </span>
+                                    </a>
+        
+                                    <a class="about-editorial-note__arrow" href="growing-guides.html"
+                                        aria-label="Explore growing paths for different spaces">
+                                        <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+        
+                        <article class="swiper-slide about-editorial-notes__slide">
+                            <div class="about-editorial-note about-editorial-note--lime" data-about-editorial-card>
+                                <span class="about-editorial-note__light" aria-hidden="true"></span>
+        
+                                <div class="about-editorial-note__symbol" aria-hidden="true">
+                                    <i data-lucide="scan-eye"></i>
+                                </div>
+        
+                                <div class="about-editorial-note__body">
+                                    <span class="about-editorial-note__line" aria-hidden="true"></span>
+        
+                                    <p>
+                                        Practical limitations should remain visible. Budget
+                                        context, available attention, cleaning access, crop fit,
+                                        interruptions, and maintenance all shape the setup.
+                                    </p>
+                                </div>
+        
+                                <div class="about-editorial-note__footer">
+                                    <a class="about-editorial-note__identity" href="growing-guides.html">
+                                        <span class="about-editorial-note__image">
+                                            <img src="assets/images/guides-planning.webp" alt="" width="240" height="240"
+                                                loading="lazy" decoding="async">
+                                        </span>
+        
+                                        <span class="about-editorial-note__identity-text">
+                                            <small>Editorial standard</small>
+                                            <strong>Limitations Stay Visible</strong>
+                                        </span>
+                                    </a>
+        
+                                    <a class="about-editorial-note__arrow" href="growing-guides.html"
+                                        aria-label="Explore practical growing planning">
+                                        <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+        
+                        <article class="swiper-slide about-editorial-notes__slide">
+                            <div class="about-editorial-note about-editorial-note--dark" data-about-editorial-card>
+                                <span class="about-editorial-note__light" aria-hidden="true"></span>
+        
+                                <div class="about-editorial-note__symbol" aria-hidden="true">
+                                    <i data-lucide="shield-check"></i>
+                                </div>
+        
+                                <div class="about-editorial-note__body">
+                                    <span class="about-editorial-note__line" aria-hidden="true"></span>
+        
+                                    <p>
+                                        Our role is to help readers understand, compare, and plan.
+                                        General educational guidance cannot promise yields,
+                                        income, commercial viability, or a specific result.
+                                    </p>
+                                </div>
+        
+                                <div class="about-editorial-note__footer">
+                                    <a class="about-editorial-note__identity" href="contact.html">
+                                        <span class="about-editorial-note__image">
+                                            <img src="assets/images/home-environment-control.webp" alt="" width="240"
+                                                height="240" loading="lazy" decoding="async">
+                                        </span>
+        
+                                        <span class="about-editorial-note__identity-text">
+                                            <small>Responsible framing</small>
+                                            <strong>Education Without Promises</strong>
+                                        </span>
+                                    </a>
+        
+                                    <a class="about-editorial-note__arrow" href="contact.html"
+                                        aria-label="Contact Growwise Urban">
+                                        <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
                             </div>
                         </article>
                     </div>
-
-                    <a class="site-button site-button--primary" href="contact.html#advertise-collaborate">
-                        <span data-config-text="collaboration.ctaLabel">
-                            Advertise &amp; Collaborate
-                        </span>
-                        <i data-lucide="arrow-up-right" aria-hidden="true"></i>
-                    </a>
                 </div>
             </div>
         </section>
+
     </main>
 
     <div data-site-footer></div>
@@ -500,6 +669,7 @@
     <script src="config/config.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
     <script src="assets/js/main.js" defer></script>
     <script src="assets/js/about.js" defer></script>
 </body>

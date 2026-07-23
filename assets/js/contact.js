@@ -7,6 +7,12 @@
         return;
     }
 
+    const body = document.body;
+
+    if (!body || body.dataset.page !== "contact") {
+        return;
+    }
+
     let initialized = false;
     let submitting = false;
     let activeRequest = null;
@@ -1422,13 +1428,11 @@
     function start() {
         const growwise = getGrowwise();
 
-        if (growwise && growwise.ready) {
-            growwise.ready.then(function (readyState) {
-                if (readyState !== false) {
-                    initContactPage();
-                }
-            });
-
+        if (
+            growwise &&
+            typeof growwise.ready === "function"
+        ) {
+            growwise.ready(initContactPage);
             return;
         }
 
@@ -1446,4 +1450,41 @@
     }
 
     start();
+})();
+
+(function () {
+    "use strict";
+
+    function applyAdvertiseCollaborate() {
+        const config = window.GROWWISE_CONFIG || {};
+        const sectionData = config.contactPage?.advertiseCollaborate || {};
+
+        const titleNode = document.querySelector("[data-contact-collab-title]");
+        const textNode = document.querySelector("[data-contact-collab-text]");
+
+        if (titleNode && typeof sectionData.title === "string" && sectionData.title.trim()) {
+            titleNode.textContent = sectionData.title.trim();
+        }
+
+        if (textNode && typeof sectionData.text === "string" && sectionData.text.trim()) {
+            textNode.textContent = sectionData.text.trim();
+        }
+    }
+
+    function renderIcons() {
+        if (window.lucide && typeof window.lucide.createIcons === "function") {
+            window.lucide.createIcons();
+        }
+    }
+
+    function initContactCollaborateBlock() {
+        applyAdvertiseCollaborate();
+        renderIcons();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initContactCollaborateBlock, { once: true });
+    } else {
+        initContactCollaborateBlock();
+    }
 })();

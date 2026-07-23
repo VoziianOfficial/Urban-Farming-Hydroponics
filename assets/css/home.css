@@ -2630,22 +2630,107 @@
     transform: translate(-50%, -4.2rem);
 }
 
-.home-category-circles__track {
+.home-category-circles__toolbar,
+.home-oval-categories__controls {
     position: relative;
     z-index: 2;
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: clamp(1.25rem, 2.7vw, 3.2rem);
-    align-items: start;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.65rem;
+    margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.home-category-circles__button,
+.home-oval-categories__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.1rem;
+    height: 3.1rem;
+    border: 1px solid rgba(30, 51, 40, 0.14);
+    border-radius: 50%;
+    background: var(--color-white);
+    color: var(--color-charcoal);
+    box-shadow: 0 0.65rem 1.5rem rgba(9, 13, 11, 0.08);
+    transition:
+        color var(--transition-base),
+        background-color var(--transition-base),
+        border-color var(--transition-base),
+        opacity var(--transition-base),
+        transform var(--transition-base);
+}
+
+.home-category-circles__button svg,
+.home-oval-categories__button svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: auto;
+}
+
+.home-category-circles__button:hover,
+.home-category-circles__button:focus-visible,
+.home-oval-categories__button:hover,
+.home-oval-categories__button:focus-visible {
+    border-color: var(--color-lime);
+    background: var(--color-lime);
+    color: var(--color-black);
+    transform: translateY(-0.18rem);
+}
+
+.home-category-circles__button.swiper-button-disabled,
+.home-oval-categories__button.swiper-button-disabled {
+    cursor: default;
+    opacity: 0.35;
+    transform: none;
+}
+
+.home-category-circles__swiper {
+    position: relative;
+    z-index: 2;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.home-category-circles__swiper::-webkit-scrollbar {
+    display: none;
+}
+
+.home-category-circles__swiper.swiper-initialized {
+    overflow: hidden;
+    scroll-snap-type: none;
+}
+
+.home-category-circles__track {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    gap: clamp(1rem, 2vw, 1.75rem);
+    transition-property: transform;
+    box-sizing: content-box;
+}
+
+.home-category-circles__swiper.swiper-initialized .home-category-circles__track {
+    gap: 0;
 }
 
 .home-category-circles__item {
     position: relative;
     display: grid;
     justify-items: center;
+    flex-shrink: 0;
     min-width: 0;
+    width: auto;
+    height: auto;
     color: var(--color-text);
+    scroll-snap-align: start;
     text-align: center;
+}
+
+.home-category-circles__swiper:not(.swiper-initialized) .home-category-circles__item {
+    flex-basis: clamp(10.5rem, 21vw, 16rem);
 }
 
 .home-category-circles__visual {
@@ -2902,10 +2987,6 @@
 }
 
 @media (max-width: 1199px) {
-    .home-category-circles__track {
-        gap: 1.25rem;
-    }
-
     .home-category-circles__visual {
         --circle-size: clamp(9.5rem, 17vw, 12rem);
     }
@@ -2920,26 +3001,6 @@
         display: none;
     }
 
-    .home-category-circles__track {
-        grid-template-columns: repeat(5, 11rem);
-        gap: 1.35rem;
-        overflow-x: auto;
-        margin-inline: calc(var(--container-padding) * -1);
-        padding:
-            1rem var(--container-padding) 1.75rem;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none;
-        overscroll-behavior-inline: contain;
-    }
-
-    .home-category-circles__track::-webkit-scrollbar {
-        display: none;
-    }
-
-    .home-category-circles__item {
-        scroll-snap-align: start;
-    }
-
     .home-category-circles__visual {
         --circle-size: 10.5rem;
     }
@@ -2948,11 +3009,6 @@
 @media (max-width: 575px) {
     .home-category-circles {
         padding: 3.75rem 0;
-    }
-
-    .home-category-circles__track {
-        grid-template-columns: repeat(5, 9.7rem);
-        gap: 1rem;
     }
 
     .home-category-circles__visual {

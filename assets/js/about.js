@@ -91,6 +91,7 @@
         const images = queryAll(
             [
                 ".about-purpose__visuals img",
+                ".about-parallax-media img",
                 ".about-audience__layout img",
                 ".about-coverage__visual img",
                 ".about-comparisons__feature img",
@@ -191,15 +192,23 @@
     }
 
     function createContextParallax() {
-        const section = query(".about-context");
-        const media = query(".about-context__media", section);
+        const items = queryAll("[data-about-parallax]").map(function (
+            section
+        ) {
+            return {
+                section: section,
+                media: query("[data-about-parallax-media]", section),
+                visible: true
+            };
+        }).filter(function (item) {
+            return Boolean(item.media);
+        });
 
-        if (!section || !media) {
+        if (items.length === 0) {
             return null;
         }
 
         let enabled = false;
-        let visible = true;
         let frameRequested = false;
         let intersectionObserver = null;
         let resizeTimer = 0;
@@ -211,19 +220,17 @@
             );
         }
 
-        function reset() {
-            media.style.transform = "";
-            media.style.willChange = "";
+        function resetItem(item) {
+            item.media.style.transform = "";
+            item.media.style.willChange = "";
         }
 
-        function update() {
-            frameRequested = false;
-
-            if (!enabled || !visible) {
+        function updateItem(item) {
+            if (!item.visible) {
                 return;
             }
 
-            const rectangle = section.getBoundingClientRect();
+            const rectangle = item.section.getBoundingClientRect();
             const viewportHeight =
                 window.innerHeight ||
                 document.documentElement.clientHeight;
@@ -244,12 +251,27 @@
                 -1,
                 Math.min(1, distance / range)
             );
-            const movement = progress * -42;
+            const parallaxRange = Number.parseFloat(
+                item.section.dataset.aboutParallaxRange
+            );
+            const movement =
+                progress *
+                -(Number.isFinite(parallaxRange) ? parallaxRange : 42);
 
-            media.style.willChange = "transform";
-            media.style.transform = `translate3d(0, ${movement.toFixed(
+            item.media.style.willChange = "transform";
+            item.media.style.transform = `translate3d(0, ${movement.toFixed(
                 2
             )}px, 0)`;
+        }
+
+        function update() {
+            frameRequested = false;
+
+            if (!enabled) {
+                return;
+            }
+
+            items.forEach(updateItem);
         }
 
         function requestUpdate() {
@@ -276,9 +298,19 @@
                 intersectionObserver = new IntersectionObserver(
                     function (entries) {
                         entries.forEach(function (entry) {
-                            visible = entry.isIntersecting;
+                            const item = items.find(function (
+                                parallaxItem
+                            ) {
+                                return parallaxItem.section === entry.target;
+                            });
 
-                            if (visible) {
+                            if (!item) {
+                                return;
+                            }
+
+                            item.visible = entry.isIntersecting;
+
+                            if (item.visible) {
                                 requestUpdate();
                             }
                         });
@@ -289,7 +321,9 @@
                     }
                 );
 
-                intersectionObserver.observe(section);
+                items.forEach(function (item) {
+                    intersectionObserver.observe(item.section);
+                });
             }
 
             requestUpdate();
@@ -298,7 +332,6 @@
         function disable() {
             enabled = false;
             frameRequested = false;
-            visible = true;
 
             window.removeEventListener("scroll", requestUpdate);
 
@@ -307,7 +340,10 @@
                 intersectionObserver = null;
             }
 
-            reset();
+            items.forEach(function (item) {
+                item.visible = true;
+                resetItem(item);
+            });
         }
 
         function sync() {
@@ -356,6 +392,8 @@
         };
     }
 
+    
+
     function initAboutPage() {
         if (initialized) {
             return;
@@ -394,16 +432,36 @@
         );
     }
 
+    function prefersReducedMotion() {
+        const growwise = getGrowwise();
+
+        if (
+            growwise &&
+            typeof growwise.prefersReducedMotion === "function"
+        ) {
+            return Boolean(growwise.prefersReducedMotion());
+        }
+
+        if (
+            growwise &&
+            typeof growwise.prefersReducedMotion === "boolean"
+        ) {
+            return growwise.prefersReducedMotion;
+        }
+
+        return window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+    }
+
     function start() {
         const growwise = getGrowwise();
 
-        if (growwise && growwise.ready) {
-            growwise.ready.then(function (readyState) {
-                if (readyState !== false) {
-                    initAboutPage();
-                }
-            });
-
+        if (
+            growwise &&
+            typeof growwise.ready === "function"
+        ) {
+            growwise.ready(initAboutPage);
             return;
         }
 
@@ -421,4 +479,345 @@
     }
 
     start();
+})();
+
+(function () {
+    "use strict";
+
+    const body = document.body;
+
+    if (!body || body.dataset.page !== "about") {
+        return;
+    }
+
+    let editorialInitialized = false;
+
+    function getGrowwise() {
+        return window.Growwise || null;
+    }
+
+    function prefersReducedMotion() {
+        const growwise = getGrowwise();
+
+        if (
+            growwise &&
+            typeof growwise.prefersReducedMotion === "function"
+        ) {
+            return Boolean(
+                growwise.prefersReducedMotion()
+            );
+        }
+
+        if (
+            growwise &&
+            typeof growwise.prefersReducedMotion === "boolean"
+        ) {
+            return growwise.prefersReducedMotion;
+        }
+
+        return window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+    }
+
+    function renderIcons() {
+        const growwise = getGrowwise();
+
+        if (
+            growwise &&
+            typeof growwise.renderIcons === "function"
+        ) {
+            growwise.renderIcons();
+            return;
+        }
+
+        if (
+            window.lucide &&
+            typeof window.lucide.createIcons === "function"
+        ) {
+            window.lucide.createIcons();
+        }
+    }
+
+    function createEditorialSwiper() {
+        const root = document.querySelector(
+            "[data-about-editorial-swiper]"
+        );
+
+        const previousButton = document.querySelector(
+            "[data-about-editorial-previous]"
+        );
+
+        const nextButton = document.querySelector(
+            "[data-about-editorial-next]"
+        );
+
+        const pagination = document.querySelector(
+            "[data-about-editorial-pagination]"
+        );
+
+        if (!root) {
+            return null;
+        }
+
+        const growwise = getGrowwise();
+
+        if (
+            growwise &&
+            typeof growwise.createSwiperOnce === "function"
+        ) {
+            return growwise.createSwiperOnce(root, {
+                speed: prefersReducedMotion() ? 0 : 720,
+                slidesPerView: 1.04,
+                slidesPerGroup: 1,
+                spaceBetween: 16,
+                grabCursor: !prefersReducedMotion(),
+                watchOverflow: true,
+                observer: true,
+                observeParents: true,
+                resizeObserver: true,
+                keyboard: {
+                    enabled: true,
+                    onlyInViewport: true
+                },
+                autoplay: prefersReducedMotion()
+                    ? false
+                    : {
+                        delay: 5600,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true
+                    },
+                navigation: {
+                    prevEl: previousButton,
+                    nextEl: nextButton
+                },
+                pagination: {
+                    el: pagination,
+                    clickable: true
+                },
+                a11y: {
+                    enabled: true,
+                    prevSlideMessage:
+                        "Previous editorial principle",
+                    nextSlideMessage:
+                        "Next editorial principle",
+                    firstSlideMessage:
+                        "This is the first editorial principle",
+                    lastSlideMessage:
+                        "This is the last editorial principle",
+                    paginationBulletMessage:
+                        "Go to editorial principle {{index}}"
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 1.2,
+                        spaceBetween: 18
+                    },
+                    768: {
+                        slidesPerView: 1.45,
+                        spaceBetween: 22
+                    },
+                    1024: {
+                        slidesPerView: 2,
+                        spaceBetween: 28
+                    }
+                }
+            });
+        }
+
+        if (typeof window.Swiper !== "function") {
+            return null;
+        }
+
+        return new window.Swiper(root, {
+            speed: prefersReducedMotion() ? 0 : 720,
+            slidesPerView: 1.04,
+            slidesPerGroup: 1,
+            spaceBetween: 16,
+            grabCursor: !prefersReducedMotion(),
+            watchOverflow: true,
+            observer: true,
+            observeParents: true,
+            keyboard: {
+                enabled: true,
+                onlyInViewport: true
+            },
+            autoplay: prefersReducedMotion()
+                ? false
+                : {
+                    delay: 5600,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
+                },
+            navigation: {
+                prevEl: previousButton,
+                nextEl: nextButton
+            },
+            pagination: {
+                el: pagination,
+                clickable: true
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1.2,
+                    spaceBetween: 18
+                },
+                768: {
+                    slidesPerView: 1.45,
+                    spaceBetween: 22
+                },
+                1024: {
+                    slidesPerView: 2,
+                    spaceBetween: 28
+                }
+            }
+        });
+    }
+
+    function initEditorialCardMovement() {
+        const cards = Array.from(
+            document.querySelectorAll(
+                "[data-about-editorial-card]"
+            )
+        );
+
+        const precisePointer = window.matchMedia(
+            "(hover: hover) and (pointer: fine)"
+        ).matches;
+
+        if (
+            cards.length === 0 ||
+            !precisePointer ||
+            prefersReducedMotion()
+        ) {
+            return;
+        }
+
+        cards.forEach(function (card) {
+            let animationFrame = 0;
+
+            function resetCard() {
+                window.cancelAnimationFrame(
+                    animationFrame
+                );
+
+                card.style.transform =
+                    "rotateX(0deg) rotateY(0deg) translateY(0)";
+            }
+
+            card.addEventListener(
+                "pointermove",
+                function (event) {
+                    const bounds =
+                        card.getBoundingClientRect();
+
+                    const pointerX =
+                        event.clientX - bounds.left;
+
+                    const pointerY =
+                        event.clientY - bounds.top;
+
+                    const horizontal =
+                        pointerX / bounds.width - 0.5;
+
+                    const vertical =
+                        pointerY / bounds.height - 0.5;
+
+                    card.style.setProperty(
+                        "--about-note-light-x",
+                        `${pointerX}px`
+                    );
+
+                    card.style.setProperty(
+                        "--about-note-light-y",
+                        `${pointerY}px`
+                    );
+
+                    window.cancelAnimationFrame(
+                        animationFrame
+                    );
+
+                    animationFrame =
+                        window.requestAnimationFrame(
+                            function () {
+                                card.style.transform =
+                                    `rotateX(${vertical * -3.5}deg) ` +
+                                    `rotateY(${horizontal * 4.5}deg) ` +
+                                    "translateY(-6px)";
+                            }
+                        );
+                }
+            );
+
+            card.addEventListener(
+                "pointerleave",
+                resetCard
+            );
+
+            card.addEventListener(
+                "pointercancel",
+                resetCard
+            );
+        });
+    }
+
+    function initEditorialNotes() {
+        if (editorialInitialized) {
+            return;
+        }
+
+        const section = document.querySelector(
+            "[data-about-editorial-notes]"
+        );
+
+        if (!section) {
+            return;
+        }
+
+        editorialInitialized = true;
+
+        createEditorialSwiper();
+        initEditorialCardMovement();
+        renderIcons();
+
+        const growwise = getGrowwise();
+
+        if (
+            growwise &&
+            typeof growwise.refreshAOS === "function"
+        ) {
+            growwise.refreshAOS();
+        }
+    }
+
+    function startEditorialNotes() {
+        const growwise = getGrowwise();
+
+        if (
+            growwise &&
+            typeof growwise.ready === "function"
+        ) {
+            growwise.ready(
+                initEditorialNotes
+            );
+
+            return;
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener(
+                "DOMContentLoaded",
+                initEditorialNotes,
+                {
+                    once: true
+                }
+            );
+
+            return;
+        }
+
+        initEditorialNotes();
+    }
+
+    startEditorialNotes();
 })();

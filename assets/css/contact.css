@@ -1677,3 +1677,210 @@
         transform: none !important;
     }
 }
+
+.contact-collab {
+    padding: clamp(2rem, 4vw, 3.5rem) 0 clamp(1.2rem, 2vw, 2rem);
+    background: var(--color-white);
+}
+
+.contact-collab__card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(18rem, 0.75fr);
+    gap: clamp(1.1rem, 2vw, 1.5rem);
+    align-items: center;
+    padding: clamp(1.4rem, 2.4vw, 2rem);
+    overflow: hidden;
+    border: 1px solid rgba(19, 26, 22, 0.1);
+    border-radius: 2rem;
+    background:
+        linear-gradient(135deg,
+            rgba(255, 255, 255, 0.98) 0%,
+            rgba(244, 248, 240, 0.98) 52%,
+            rgba(238, 247, 234, 0.98) 100%);
+    box-shadow:
+        0 1rem 2.2rem rgba(9, 13, 11, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    isolation: isolate;
+}
+
+.contact-collab__card::before {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 0.28rem;
+    background: linear-gradient(90deg,
+            var(--color-lime),
+            var(--color-hydro),
+            var(--color-forest));
+    content: "";
+    opacity: 0.95;
+}
+
+.contact-collab__glow {
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(10px);
+}
+
+.contact-collab__glow--one {
+    top: -5rem;
+    right: 16%;
+    width: 14rem;
+    height: 14rem;
+    background: rgba(183, 243, 74, 0.18);
+}
+
+.contact-collab__glow--two {
+    right: -4rem;
+    bottom: -4rem;
+    width: 12rem;
+    height: 12rem;
+    background: rgba(82, 215, 204, 0.16);
+}
+
+.contact-collab__main {
+    position: relative;
+    z-index: 2;
+}
+
+.contact-collab__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.7rem;
+    color: var(--color-forest);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.contact-collab__eyebrow::before {
+    width: 2.1rem;
+    height: 1px;
+    background: currentColor;
+    content: "";
+    opacity: 0.45;
+}
+
+.contact-collab__title {
+    max-width: 22ch;
+    margin: 0;
+    color: var(--color-charcoal);
+    font-family: var(--font-heading);
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    font-weight: 780;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+}
+
+.contact-collab__text {
+    max-width: 72ch;
+    margin: 0.95rem 0 0;
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.72;
+}
+
+.contact-collab__side {
+    display: grid;
+    gap: 0.8rem;
+    align-content: center;
+    justify-items: stretch;
+}
+
+.contact-collab__pill {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-height: 4.1rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(19, 26, 22, 0.09);
+    border-radius: 1.25rem;
+    background:
+        linear-gradient(135deg,
+            rgba(255, 255, 255, 0.9),
+            rgba(249, 250, 247, 0.9));
+    color: var(--color-charcoal);
+    transition:
+        transform 240ms ease,
+        border-color 240ms ease,
+        background-color 240ms ease;
+}
+
+.contact-collab__pill:hover {
+    transform: translateX(0.22rem);
+    border-color: rgba(111, 191, 68, 0.28);
+    background:
+        linear-gradient(135deg,
+            rgba(242, 250, 235, 0.95),
+            rgba(233, 247, 242, 0.95));
+}
+
+.contact-collab__pill svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    min-width: 1.15rem;
+    color: var(--color-forest);
+    stroke-width: 2;
+}
+
+.contact-collab__pill span {
+    font-size: 0.94rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+@media (max-width: 991px) {
+    .contact-collab__card {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-collab__side {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: stretch;
+    }
+
+    .contact-collab__pill {
+        min-height: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .contact-collab {
+        padding: 1.5rem 0 1rem;
+    }
+
+    .contact-collab__card {
+        padding: 1.15rem;
+        border-radius: 1.4rem;
+    }
+
+    .contact-collab__title {
+        font-size: 1.55rem;
+    }
+
+    .contact-collab__text {
+        font-size: 0.95rem;
+        line-height: 1.65;
+    }
+
+    .contact-collab__side {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-collab__pill {
+        min-height: 3.7rem;
+        padding: 0.85rem 0.95rem;
+        border-radius: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-collab__pill {
+        transition: none;
+    }
+}
