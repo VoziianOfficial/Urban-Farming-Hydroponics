@@ -2028,9 +2028,10 @@
         min-height: 0;
     }
 
-    .home-balance__visual {
-        min-height: 27rem;
-    }
+  .home-balance__visual {
+      min-height: 18rem;
+      height: 18rem;
+  }
 
     .home-crops__mosaic {
         grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -2256,9 +2257,10 @@
         justify-content: flex-start;
     }
 
-    .home-balance__visual {
-        min-height: 21rem;
-    }
+.home-balance__visual {
+    min-height: 16rem;
+    height: 16rem;
+}
 
     .home-balance__content {
         padding: 1.6rem;
@@ -3150,6 +3152,7 @@
         var(--radius-large) var(--radius-large) 4rem var(--radius-large);
     background: var(--note-background);
     color: var(--note-text);
+
     isolation: isolate;
     transform-style: preserve-3d;
     will-change: transform;
@@ -3621,3 +3624,86 @@
         transform: none !important;
     }
 }
+
+.home-field-note:hover {
+    border-color: color-mix(in srgb,
+            var(--note-accent) 55%,
+            transparent);
+    box-shadow: none;
+    filter: saturate(1.04);
+}
+
+@media (min-width: 62rem) {
+    .home-balance__panel {
+        height: 23rem !important;
+        min-height: 0 !important;
+        max-height: 23rem;
+        grid-template-columns:
+            minmax(0, 1.25fr) minmax(18rem, 0.75fr);
+        align-items: stretch;
+    }
+
+    .home-balance__visual {
+        height: 23rem;
+        min-height: 0 !important;
+    }
+
+    .home-balance__visual img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .home-balance__content {
+        min-width: 0;
+        min-height: 0;
+        align-content: center;
+        gap: 0.65rem;
+        padding: 1.35rem 2rem;
+        overflow: hidden;
+    }
+
+    .home-balance__icon {
+        width: 2.8rem;
+        height: 2.8rem;
+    }
+
+    .home-balance__icon svg {
+        width: 1.15rem;
+        height: 1.15rem;
+    }
+
+    .home-balance__content .site-eyebrow {
+        font-size: 0.65rem;
+    }
+
+    .home-balance__content h3 {
+        max-width: 18ch;
+        font-size: clamp(1.65rem, 2.3vw, 2.35rem);
+        line-height: 1.02;
+    }
+
+    .home-balance__content p {
+        margin: 0;
+        font-size: 0.84rem;
+        line-height: 1.55;
+    }
+
+    .home-balance__content .site-button {
+        min-height: 2.7rem;
+        margin-top: 0.15rem;
+        padding: 0.65rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    .home-balance__accent {
+        right: -4rem;
+        bottom: -5.5rem;
+        width: 12rem;
+        height: 12rem;
+        border-width: 1.2rem;
+    }
+}
+

@@ -315,78 +315,126 @@
             </div>
         </section>
 
-        <section class="site-section site-section--white home-potential">
-            <div class="site-container home-potential__layout">
-                <div class="home-potential__visual" data-aos="growwise-fade-right">
-                    <div class="home-potential__backing" aria-hidden="true"></div>
-                    <figure class="home-potential__image-frame">
-                        <img src="assets/images/home-small-space-growing.webp"
-                            alt="Hands tending healthy plants in a compact indoor growing area" width="1100"
-                            height="1450" loading="lazy" decoding="async">
-                    </figure>
-                    <div class="home-potential__note">
-                        <i data-lucide="scan-line" aria-hidden="true"></i>
-                        <span>Start with the space you already have.</span>
+                <section class="site-section site-section--warm home-pathways" data-home-path-selector>
+                    <div class="site-container-wide">
+                        <div class="site-section__head">
+                            <span class="site-eyebrow">Explore by Interest</span>
+                            <h2 class="site-heading">Find Your Growing Path</h2>
+                            <p class="site-copy">
+                                Choose a topic to see the space, routine, and questions that commonly shape the setup.
+                            </p>
+                        </div>
+                
+                        <div class="home-pathways__layout">
+                            <div class="home-pathways__navigation" role="tablist" aria-label="Growing paths">
+                                <button class="home-pathways__button is-active" type="button" role="tab" id="home-path-tab-microgreens"
+                                    aria-controls="home-path-panel" aria-selected="true" tabindex="0" data-home-path-button
+                                    data-path-key="microgreens" data-path-title="Microgreens for Compact Routines"
+                                    data-path-summary="Microgreens can suit shelves, counters, and other limited areas when trays, moisture, light, airflow, and cleanliness are planned together."
+                                    data-path-fact-one="Often explored in shallow tray-based setups."
+                                    data-path-fact-two="Routine observation matters more than unnecessary complexity."
+                                    data-path-image="assets/images/category-microgreens.webp"
+                                    data-path-alt="Dense green microgreens growing in shallow indoor trays"
+                                    data-path-href="microgreens.html">
+                                    <span>Microgreens</span>
+                                    <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                                </button>
+                
+                                <button class="home-pathways__button" type="button" role="tab" id="home-path-tab-herbs"
+                                    aria-controls="home-path-panel" aria-selected="false" tabindex="-1" data-home-path-button
+                                    data-path-key="indoor-herbs" data-path-title="Herbs Within Everyday Reach"
+                                    data-path-summary="Indoor herbs may use natural window light, supplemental lighting, or a combination depending on the crop, season, and available space."
+                                    data-path-fact-one="Containers need suitable drainage and placement."
+                                    data-path-fact-two="Watering routines vary with light, airflow, and plant size."
+                                    data-path-image="assets/images/category-herbs.webp"
+                                    data-path-alt="Fresh herbs growing near a bright apartment window"
+                                    data-path-href="indoor-herbs.html">
+                                    <span>Indoor Herbs</span>
+                                    <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                                </button>
+                
+                                <button class="home-pathways__button" type="button" role="tab" id="home-path-tab-hydroponics"
+                                    aria-controls="home-path-panel" aria-selected="false" tabindex="-1" data-home-path-button
+                                    data-path-key="hydroponic-systems" data-path-title="Hydroponics With Clearer Trade-Offs"
+                                    data-path-summary="Hydroponic methods differ in water movement, root support, maintenance needs, component count, and suitability for different crops."
+                                    data-path-fact-one="No single system is ideal for every space."
+                                    data-path-fact-two="Access for cleaning and observation should be considered early."
+                                    data-path-image="assets/images/category-hydroponics.webp"
+                                    data-path-alt="Healthy plant roots suspended in a practical hydroponic growing system"
+                                    data-path-href="hydroponic-systems.html">
+                                    <span>Hydroponic Systems</span>
+                                    <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                                </button>
+                
+                                <button class="home-pathways__button" type="button" role="tab" id="home-path-tab-lights"
+                                    aria-controls="home-path-panel" aria-selected="false" tabindex="-1" data-home-path-button
+                                    data-path-key="grow-lights" data-path-title="Lighting Around the Crop"
+                                    data-path-summary="Grow-light choices become more useful when fixture form, placement, coverage, heat, schedule, and plant response are viewed together."
+                                    data-path-fact-one="Fixture shape affects how light reaches the growing area."
+                                    data-path-fact-two="Plant response should be observed rather than assumed."
+                                    data-path-image="assets/images/category-grow-lights.webp"
+                                    data-path-alt="Full-spectrum grow lights illuminating leafy indoor crops"
+                                    data-path-href="grow-lights.html">
+                                    <span>Grow Lights</span>
+                                    <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                                </button>
+                
+                                <button class="home-pathways__button" type="button" role="tab" id="home-path-tab-watering"
+                                    aria-controls="home-path-panel" aria-selected="false" tabindex="-1" data-home-path-button
+                                    data-path-key="automatic-watering" data-path-title="A Watering Routine You Can Inspect"
+                                    data-path-summary="Automatic watering may involve reservoirs, pumps, timers, tubing, delivery points, drainage, and a plan for regular inspection."
+                                    data-path-fact-one="Automation still requires observation and maintenance."
+                                    data-path-fact-two="Drainage and overflow context should be planned before use."
+                                    data-path-image="assets/images/category-watering.webp"
+                                    data-path-alt="Automatic watering tubes delivering water to indoor plants"
+                                    data-path-href="automatic-watering.html">
+                                    <span>Automatic Watering</span>
+                                    <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                
+                            <article class="home-pathways__panel" id="home-path-panel" role="tabpanel"
+                                aria-labelledby="home-path-tab-microgreens" tabindex="0" data-home-path-panel>
+                                <div class="home-pathways__media">
+                                    <img src="assets/images/category-microgreens.webp"
+                                        alt="Dense green microgreens growing in shallow indoor trays" width="1500" height="1000"
+                                        loading="lazy" decoding="async" data-home-path-image>
+                                    <span class="home-pathways__media-label" data-home-path-label>
+                                        Microgreens
+                                    </span>
+                                </div>
+                
+                                <div class="home-pathways__panel-content">
+                                    <h3 data-home-path-title>
+                                        Microgreens for Compact Routines
+                                    </h3>
+                                    <p data-home-path-summary>
+                                        Microgreens can suit shelves, counters, and other limited areas when trays, moisture,
+                                        light, airflow, and cleanliness are planned together.
+                                    </p>
+                                    <ul class="home-pathways__facts" role="list">
+                                        <li>
+                                            <i data-lucide="check" aria-hidden="true"></i>
+                                            <span data-home-path-fact-one>
+                                                Often explored in shallow tray-based setups.
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <i data-lucide="check" aria-hidden="true"></i>
+                                            <span data-home-path-fact-two>
+                                                Routine observation matters more than unnecessary complexity.
+                                            </span>
+                                        </li>
+                                    </ul>
+                                    <a class="site-link" href="microgreens.html" data-home-path-link>
+                                        <span>Explore this guide</span>
+                                        <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
                     </div>
-                </div>
-
-                <div class="home-potential__content">
-                    <div class="home-potential__heading" data-aos="growwise-fade-up">
-                        <span class="site-eyebrow">Why Start Small</span>
-                        <h2 class="site-heading">
-                            Small Spaces, Real Potential
-                        </h2>
-                        <p class="site-copy">
-                            Indoor growing becomes easier to understand when the space, crop, system, and routine are
-                            considered together.
-                        </p>
-                    </div>
-
-                    <div class="home-potential__points">
-                        <article class="home-potential__point" data-aos="growwise-fade-up" data-aos-delay="80">
-                            <i data-lucide="book-open-check" aria-hidden="true"></i>
-                            <div>
-                                <h3>Beginner-Friendly Guidance</h3>
-                                <p>
-                                    Clear explanations help readers understand the first decisions without unnecessary
-                                    complexity.
-                                </p>
-                            </div>
-                        </article>
-
-                        <article class="home-potential__point" data-aos="growwise-fade-up" data-aos-delay="140">
-                            <i data-lucide="columns-3-cog" aria-hidden="true"></i>
-                            <div>
-                                <h3>System Comparisons</h3>
-                                <p>
-                                    Compare how common methods differ in space use, maintenance, and everyday attention.
-                                </p>
-                            </div>
-                        </article>
-
-                        <article class="home-potential__point" data-aos="growwise-fade-up" data-aos-delay="200">
-                            <i data-lucide="wind" aria-hidden="true"></i>
-                            <div>
-                                <h3>Environmental Basics</h3>
-                                <p>
-                                    Build context around lighting, airflow, temperature, water, and root conditions.
-                                </p>
-                            </div>
-                        </article>
-
-                        <article class="home-potential__point" data-aos="growwise-fade-up" data-aos-delay="260">
-                            <i data-lucide="building-2" aria-hidden="true"></i>
-                            <div>
-                                <h3>Home and Small-Scale Context</h3>
-                                <p>
-                                    Explore practical considerations for apartments and early small-commercial planning.
-                                </p>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
+                </section>
 
         <section class="home-field-notes" aria-label="Practical indoor growing notes" data-home-field-notes>
             <div class="home-field-notes__orb home-field-notes__orb--one" aria-hidden="true"></div>
@@ -606,127 +654,79 @@
             </div>
         </section>
 
-        <section class="site-section site-section--warm home-pathways" data-home-path-selector>
-            <div class="site-container-wide">
-                <div class="site-section__head">
-                    <span class="site-eyebrow">Explore by Interest</span>
-                    <h2 class="site-heading">Find Your Growing Path</h2>
-                    <p class="site-copy">
-                        Choose a topic to see the space, routine, and questions that commonly shape the setup.
-                    </p>
-                </div>
-
-                <div class="home-pathways__layout">
-                    <div class="home-pathways__navigation" role="tablist" aria-label="Growing paths">
-                        <button class="home-pathways__button is-active" type="button" role="tab"
-                            id="home-path-tab-microgreens" aria-controls="home-path-panel" aria-selected="true"
-                            tabindex="0" data-home-path-button data-path-key="microgreens"
-                            data-path-title="Microgreens for Compact Routines"
-                            data-path-summary="Microgreens can suit shelves, counters, and other limited areas when trays, moisture, light, airflow, and cleanliness are planned together."
-                            data-path-fact-one="Often explored in shallow tray-based setups."
-                            data-path-fact-two="Routine observation matters more than unnecessary complexity."
-                            data-path-image="assets/images/category-microgreens.webp"
-                            data-path-alt="Dense green microgreens growing in shallow indoor trays"
-                            data-path-href="microgreens.html">
-                            <span>Microgreens</span>
-                            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
-                        </button>
-
-                        <button class="home-pathways__button" type="button" role="tab" id="home-path-tab-herbs"
-                            aria-controls="home-path-panel" aria-selected="false" tabindex="-1" data-home-path-button
-                            data-path-key="indoor-herbs" data-path-title="Herbs Within Everyday Reach"
-                            data-path-summary="Indoor herbs may use natural window light, supplemental lighting, or a combination depending on the crop, season, and available space."
-                            data-path-fact-one="Containers need suitable drainage and placement."
-                            data-path-fact-two="Watering routines vary with light, airflow, and plant size."
-                            data-path-image="assets/images/category-herbs.webp"
-                            data-path-alt="Fresh herbs growing near a bright apartment window"
-                            data-path-href="indoor-herbs.html">
-                            <span>Indoor Herbs</span>
-                            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
-                        </button>
-
-                        <button class="home-pathways__button" type="button" role="tab" id="home-path-tab-hydroponics"
-                            aria-controls="home-path-panel" aria-selected="false" tabindex="-1" data-home-path-button
-                            data-path-key="hydroponic-systems" data-path-title="Hydroponics With Clearer Trade-Offs"
-                            data-path-summary="Hydroponic methods differ in water movement, root support, maintenance needs, component count, and suitability for different crops."
-                            data-path-fact-one="No single system is ideal for every space."
-                            data-path-fact-two="Access for cleaning and observation should be considered early."
-                            data-path-image="assets/images/category-hydroponics.webp"
-                            data-path-alt="Healthy plant roots suspended in a practical hydroponic growing system"
-                            data-path-href="hydroponic-systems.html">
-                            <span>Hydroponic Systems</span>
-                            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
-                        </button>
-
-                        <button class="home-pathways__button" type="button" role="tab" id="home-path-tab-lights"
-                            aria-controls="home-path-panel" aria-selected="false" tabindex="-1" data-home-path-button
-                            data-path-key="grow-lights" data-path-title="Lighting Around the Crop"
-                            data-path-summary="Grow-light choices become more useful when fixture form, placement, coverage, heat, schedule, and plant response are viewed together."
-                            data-path-fact-one="Fixture shape affects how light reaches the growing area."
-                            data-path-fact-two="Plant response should be observed rather than assumed."
-                            data-path-image="assets/images/category-grow-lights.webp"
-                            data-path-alt="Full-spectrum grow lights illuminating leafy indoor crops"
-                            data-path-href="grow-lights.html">
-                            <span>Grow Lights</span>
-                            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
-                        </button>
-
-                        <button class="home-pathways__button" type="button" role="tab" id="home-path-tab-watering"
-                            aria-controls="home-path-panel" aria-selected="false" tabindex="-1" data-home-path-button
-                            data-path-key="automatic-watering" data-path-title="A Watering Routine You Can Inspect"
-                            data-path-summary="Automatic watering may involve reservoirs, pumps, timers, tubing, delivery points, drainage, and a plan for regular inspection."
-                            data-path-fact-one="Automation still requires observation and maintenance."
-                            data-path-fact-two="Drainage and overflow context should be planned before use."
-                            data-path-image="assets/images/category-watering.webp"
-                            data-path-alt="Automatic watering tubes delivering water to indoor plants"
-                            data-path-href="automatic-watering.html">
-                            <span>Automatic Watering</span>
-                            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
-                        </button>
+                <section class="site-section site-section--white home-potential">
+                    <div class="site-container home-potential__layout">
+                        <div class="home-potential__visual" data-aos="growwise-fade-right">
+                            <div class="home-potential__backing" aria-hidden="true"></div>
+                            <figure class="home-potential__image-frame">
+                                <img src="assets/images/home-small-space-growing.webp"
+                                    alt="Hands tending healthy plants in a compact indoor growing area" width="1100" height="1450"
+                                    loading="lazy" decoding="async">
+                            </figure>
+                            <div class="home-potential__note">
+                                <i data-lucide="scan-line" aria-hidden="true"></i>
+                                <span>Start with the space you already have.</span>
+                            </div>
+                        </div>
+                
+                        <div class="home-potential__content">
+                            <div class="home-potential__heading" data-aos="growwise-fade-up">
+                                <span class="site-eyebrow">Why Start Small</span>
+                                <h2 class="site-heading">
+                                    Small Spaces, Real Potential
+                                </h2>
+                                <p class="site-copy">
+                                    Indoor growing becomes easier to understand when the space, crop, system, and routine are
+                                    considered together.
+                                </p>
+                            </div>
+                
+                            <div class="home-potential__points">
+                                <article class="home-potential__point" data-aos="growwise-fade-up" data-aos-delay="80">
+                                    <i data-lucide="book-open-check" aria-hidden="true"></i>
+                                    <div>
+                                        <h3>Beginner-Friendly Guidance</h3>
+                                        <p>
+                                            Clear explanations help readers understand the first decisions without unnecessary
+                                            complexity.
+                                        </p>
+                                    </div>
+                                </article>
+                
+                                <article class="home-potential__point" data-aos="growwise-fade-up" data-aos-delay="140">
+                                    <i data-lucide="columns-3-cog" aria-hidden="true"></i>
+                                    <div>
+                                        <h3>System Comparisons</h3>
+                                        <p>
+                                            Compare how common methods differ in space use, maintenance, and everyday attention.
+                                        </p>
+                                    </div>
+                                </article>
+                
+                                <article class="home-potential__point" data-aos="growwise-fade-up" data-aos-delay="200">
+                                    <i data-lucide="wind" aria-hidden="true"></i>
+                                    <div>
+                                        <h3>Environmental Basics</h3>
+                                        <p>
+                                            Build context around lighting, airflow, temperature, water, and root conditions.
+                                        </p>
+                                    </div>
+                                </article>
+                
+                                <article class="home-potential__point" data-aos="growwise-fade-up" data-aos-delay="260">
+                                    <i data-lucide="building-2" aria-hidden="true"></i>
+                                    <div>
+                                        <h3>Home and Small-Scale Context</h3>
+                                        <p>
+                                            Explore practical considerations for apartments and early small-commercial planning.
+                                        </p>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
                     </div>
+                </section>
 
-                    <article class="home-pathways__panel" id="home-path-panel" role="tabpanel"
-                        aria-labelledby="home-path-tab-microgreens" tabindex="0" data-home-path-panel>
-                        <div class="home-pathways__media">
-                            <img src="assets/images/category-microgreens.webp"
-                                alt="Dense green microgreens growing in shallow indoor trays" width="1500" height="1000"
-                                loading="lazy" decoding="async" data-home-path-image>
-                            <span class="home-pathways__media-label" data-home-path-label>
-                                Microgreens
-                            </span>
-                        </div>
-
-                        <div class="home-pathways__panel-content">
-                            <h3 data-home-path-title>
-                                Microgreens for Compact Routines
-                            </h3>
-                            <p data-home-path-summary>
-                                Microgreens can suit shelves, counters, and other limited areas when trays, moisture,
-                                light, airflow, and cleanliness are planned together.
-                            </p>
-                            <ul class="home-pathways__facts" role="list">
-                                <li>
-                                    <i data-lucide="check" aria-hidden="true"></i>
-                                    <span data-home-path-fact-one>
-                                        Often explored in shallow tray-based setups.
-                                    </span>
-                                </li>
-                                <li>
-                                    <i data-lucide="check" aria-hidden="true"></i>
-                                    <span data-home-path-fact-two>
-                                        Routine observation matters more than unnecessary complexity.
-                                    </span>
-                                </li>
-                            </ul>
-                            <a class="site-link" href="microgreens.html" data-home-path-link>
-                                <span>Explore this guide</span>
-                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
 
         <section class="site-section site-section--white home-systems">
             <div class="site-container-wide">
