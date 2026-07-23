@@ -1091,7 +1091,7 @@
             }
 
             const path = element.getAttribute("data-config-options");
-            const options = getConfigValue(path, []);
+            const options = getConfigValue(path, null);
             const placeholderPath = element.getAttribute(
                 "data-config-options-placeholder"
             );
@@ -1100,7 +1100,7 @@
                 : "";
             const previousValue = element.value;
 
-            if (!Array.isArray(options)) {
+            if (!Array.isArray(options) || options.length === 0) {
                 return;
             }
 
